@@ -1,10 +1,13 @@
 package io.github.owuor91.hackernews;
 
 import android.app.Application;
+import io.github.owuor91.hackernews.di.activity.ActivityComponent;
+import io.github.owuor91.hackernews.di.activity.ActivityModule;
 import io.github.owuor91.hackernews.di.app.AndroidModule;
 import io.github.owuor91.hackernews.di.app.ApplicationComponent;
 import io.github.owuor91.hackernews.di.app.ApplicationModule;
 import io.github.owuor91.hackernews.di.app.DaggerApplicationComponent;
+import io.github.owuor91.hackernews.ui.activities.BaseActivity;
 
 /**
  * Created by johnowuor on 20/03/2018.
@@ -19,5 +22,10 @@ public class MyApplication extends Application{
         .applicationModule(new ApplicationModule(this))
         .androidModule(new AndroidModule(this))
         .build();
+    applicationComponent.inject(this);
+  }
+
+  public ActivityComponent getActivityInjector(BaseActivity baseActivity){
+    return applicationComponent.activityComponentBuilder().activityModule(new ActivityModule(baseActivity)).build();
   }
 }

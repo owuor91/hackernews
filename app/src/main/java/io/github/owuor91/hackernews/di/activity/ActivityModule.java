@@ -2,6 +2,7 @@ package io.github.owuor91.hackernews.di.activity;
 
 import dagger.Module;
 import io.github.owuor91.hackernews.di.adapter.AdapterComponent;
+import io.github.owuor91.hackernews.ui.activities.BaseActivity;
 import io.github.owuor91.presentation.di.PresenterModule;
 
 /**
@@ -10,4 +11,8 @@ import io.github.owuor91.presentation.di.PresenterModule;
 
 @Module(includes = PresenterModule.class, subcomponents = { AdapterComponent.class })
 public class ActivityModule {
+  private final BaseActivity baseActivity;
+  public ActivityModule(BaseActivity baseActivity) {
+    this.baseActivity = baseActivity;
+  }
 }
