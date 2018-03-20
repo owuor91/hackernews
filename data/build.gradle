@@ -21,6 +21,13 @@ android {
     release {
       minifyEnabled false
       proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+      buildConfigField('String', 'BASE_URL', '"https://newsapi.org/v2/"')
+      buildConfigField('String', 'NEWS_API_KEY', '"531bf86d69dd4c2c9766462871c79853"')
+    }
+
+    debug{
+      buildConfigField('String', 'BASE_URL', '"https://newsapi.org/v2/"')
+      buildConfigField('String', 'NEWS_API_KEY', '"531bf86d69dd4c2c9766462871c79853"')
     }
   }
 }
@@ -34,6 +41,10 @@ dependencies {
   androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 
   api 'com.google.dagger:dagger:2.11'
+  implementation 'com.squareup.okhttp3:okhttp:3.10.0'
+  api 'com.squareup.retrofit2:converter-gson:2.4.0'
+  api 'io.reactivex.rxjava2:rxandroid:2.0.1'
+
 
   api project(':domain')
 }
