@@ -7,7 +7,6 @@ import dagger.Module;
 import dagger.Provides;
 import io.github.owuor91.domain.di.DIConstants;
 import javax.inject.Named;
-import javax.inject.Singleton;
 
 /**
  * Created by johnowuor on 20/03/2018.
@@ -19,15 +18,15 @@ import javax.inject.Singleton;
     this.context = context;
   }
 
-  @Singleton @Provides @Named(DIConstants.APP) public Context provideContext() {
+  @Provides @Named(DIConstants.APP) public Context provideContext() {
     return context;
   }
 
-  @Singleton @Provides public SharedPreferences provideSharedPreferences(@Named(DIConstants.APP) Context context){
+  @Provides public SharedPreferences provideSharedPreferences(@Named(DIConstants.APP) Context context) {
     return context.getSharedPreferences("hacker_news_sharedprefs", Context.MODE_PRIVATE);
   }
 
-  @Singleton @Provides public Resources provideResources(@Named(DIConstants.APP) Context context){
+  @Provides public Resources provideResources(@Named(DIConstants.APP) Context context) {
     return context.getResources();
   }
 }

@@ -1,6 +1,7 @@
 package io.github.owuor91.data.di;
 
 import com.google.gson.Gson;
+import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import dagger.Module;
 import dagger.Provides;
 import io.github.owuor91.data.BuildConfig;
@@ -26,16 +27,17 @@ import retrofit2.converter.gson.GsonConverterFactory;
         .build();
   }
 
+
   @Provides @Named(DIConstants.DEFAULT)
   public Retrofit provideDefaultRetrofit(Gson gson, @Named(DIConstants.DEFAULT) OkHttpClient okHttpClient) {
     return new Retrofit.Builder().baseUrl(BuildConfig.BASE_URL)
         .addConverterFactory(GsonConverterFactory.create(gson))
+        .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
         .client(okHttpClient)
         .build();
   }
 
-  @Provides public HackerNewsApi provideHackerNewsApi(@Named(DIConstants.DEFAULT) Retrofit retrofit){
+  @Provides public HackerNewsApi provideHackerNewsApi(@Named(DIConstants.DEFAULT) Retrofit retrofit) {
     return retrofit.create(HackerNewsApi.class);
   }
-
 }
