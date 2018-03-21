@@ -2,10 +2,10 @@ package io.github.owuor91.data.di;
 
 import dagger.Module;
 import dagger.Provides;
-import io.github.owuor91.data.api.HackerNewsApi;
-import io.github.owuor91.data.repository.article.ArticleApiRepository;
+import io.github.owuor91.data.api.ItemsApi;
+import io.github.owuor91.data.repository.article.ItemApiRepository;
 import io.github.owuor91.domain.di.DIConstants;
-import io.github.owuor91.domain.repository.ArticleRepository;
+import io.github.owuor91.domain.repository.ItemRepository;
 import javax.inject.Named;
 
 /**
@@ -13,7 +13,7 @@ import javax.inject.Named;
  */
 
 @Module public class RepositoryModule {
-  @Provides @Named(DIConstants.API) ArticleRepository provideArticleApiRepository(HackerNewsApi hackerNewsApi){
-    return new ArticleApiRepository(hackerNewsApi);
+  @Provides @Named(DIConstants.API) ItemRepository provideItemsApiRepository(ItemsApi itemsApi) {
+    return new ItemApiRepository(itemsApi);
   }
 }

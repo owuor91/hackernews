@@ -6,15 +6,12 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 import butterknife.BindView;
-import io.github.owuor91.domain.models.Article;
 import io.github.owuor91.hackernews.R;
 import io.github.owuor91.hackernews.ui.fragments.JobStoriesFragment;
 import io.github.owuor91.hackernews.ui.fragments.ShowStoriesFragment;
 import io.github.owuor91.hackernews.ui.fragments.TopStoriesFragment;
 import io.github.owuor91.presentation.home.HomePresenter;
-import java.util.List;
 import javax.inject.Inject;
 
 public class HomeActivity extends BaseActivity implements HomePresenter.View {
@@ -62,12 +59,6 @@ public class HomeActivity extends BaseActivity implements HomePresenter.View {
       }
       return true;
     });
-
-    homePresenter.getArticles();
-  }
-
-  @Override public void showArticles(List<Article> articleList) {
-    Toast.makeText(getBaseContext(), "We have retrieved " + articleList.size() + " articles", Toast.LENGTH_LONG).show();
   }
 
   private void openSelectedTab(Fragment fragment, String toolbarTitleText) {
