@@ -3,7 +3,7 @@ package io.github.owuor91.data.di;
 import dagger.Module;
 import dagger.Provides;
 import io.github.owuor91.data.api.ItemsApi;
-import io.github.owuor91.data.repository.article.ItemApiRepository;
+import io.github.owuor91.data.repository.item.ItemApiRepository;
 import io.github.owuor91.domain.di.DIConstants;
 import io.github.owuor91.domain.repository.ItemRepository;
 import javax.inject.Named;

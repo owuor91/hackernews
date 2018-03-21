@@ -1,5 +1,6 @@
 package io.github.owuor91.domain.repository;
 
+import io.github.owuor91.domain.models.Item;
 import io.reactivex.Single;
 import java.util.List;
 
@@ -8,9 +9,13 @@ import java.util.List;
  */
 
 public interface ItemRepository {
-  Single<List<Integer>> getTopStories();
+  Single<List<Item>> getTopStories();
 
-  Single<List<Integer>> getShowStories();
+  Single<List<Item>> getShowStories();
 
-  Single<List<Integer>> getJobStories();
+  Single<List<Item>> getJobStories();
+
+  Single<List<Item>> saveItems(List<Item> itemList);
+
+  Single<Object> deleteItems(List<Item> itemList);
 }

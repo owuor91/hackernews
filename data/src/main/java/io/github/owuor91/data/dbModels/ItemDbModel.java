@@ -1,20 +1,23 @@
-package io.github.owuor91.domain.models;
+package io.github.owuor91.data.dbModels;
+
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
 
 /**
- * Created by johnowuor on 21/03/2018.
+ * Created by johnowuor on 22/03/2018.
  */
 
-public class Item {
-  private int id;
+@Entity(tableName = "Items") public class ItemDbModel {
+  @PrimaryKey(autoGenerate = true) private int id;
 
   private int item;
 
   private String itemType;
 
-  public Item() {
+  public ItemDbModel() {
   }
 
-  private Item(Builder builder) {
+  private ItemDbModel(Builder builder) {
     setId(builder.id);
     setItem(builder.item);
     setItemType(builder.itemType);
@@ -71,8 +74,8 @@ public class Item {
       return this;
     }
 
-    public Item build() {
-      return new Item(this);
+    public ItemDbModel build() {
+      return new ItemDbModel(this);
     }
   }
 }

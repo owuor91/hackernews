@@ -1,35 +1,24 @@
-package io.github.owuor91.domain.models;
+package io.github.owuor91.data.apiModels;
 
 /**
- * Created by johnowuor on 21/03/2018.
+ * Created by johnowuor on 22/03/2018.
  */
 
-public class Item {
-  private int id;
-
+public class ItemApiModel {
   private int item;
 
   private String itemType;
 
-  public Item() {
+  public ItemApiModel() {
   }
 
-  private Item(Builder builder) {
-    setId(builder.id);
+  private ItemApiModel(Builder builder) {
     setItem(builder.item);
     setItemType(builder.itemType);
   }
 
   public static Builder newBuilder() {
     return new Builder();
-  }
-
-  public int getId() {
-    return id;
-  }
-
-  public void setId(int id) {
-    this.id = id;
   }
 
   public int getItem() {
@@ -49,16 +38,10 @@ public class Item {
   }
 
   public static final class Builder {
-    private int id;
     private int item;
     private String itemType;
 
     private Builder() {
-    }
-
-    public Builder withId(int val) {
-      id = val;
-      return this;
     }
 
     public Builder withItem(int val) {
@@ -71,8 +54,8 @@ public class Item {
       return this;
     }
 
-    public Item build() {
-      return new Item(this);
+    public ItemApiModel build() {
+      return new ItemApiModel(this);
     }
   }
 }
