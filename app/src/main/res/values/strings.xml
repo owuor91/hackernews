@@ -1,4 +1,10 @@
 <resources>
   <string name="app_name">HackerNews</string>
   <string name="title_activity_home">HomeActivity</string>
+  <string name="topStories">Top Stories</string>
+  <string name="showStories">Show Stories</string>
+  <string name="jobStories">Job Stories</string>
+
+  <!-- TODO: Remove or change this placeholder text -->
+  <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

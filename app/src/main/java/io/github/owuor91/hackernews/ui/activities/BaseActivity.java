@@ -5,6 +5,7 @@ import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
+import butterknife.ButterKnife;
 import io.github.owuor91.data.util.RxUtil;
 import io.github.owuor91.hackernews.MyApplication;
 import io.github.owuor91.hackernews.di.activity.ActivityComponent;
@@ -32,6 +33,7 @@ public class BaseActivity extends AppCompatActivity{
 
   @Override protected void onStart() {
     super.onStart();
+    ButterKnife.bind(this);
     compositeDisposable = RxUtil.initDisposables(compositeDisposable);
   }
 

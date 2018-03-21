@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+  <item
+      android:id="@+id/topStories"
+      android:enabled="true"
+      android:icon="@drawable/ic_important_devices_white_24dp"
+      android:title="@string/topStories"
+      app:showAsAction="ifRoom"/>
+
+  <item
+      android:id="@+id/showStories"
+      android:enabled="true"
+      android:icon="@drawable/ic_movie_filter_white_24dp"
+      android:title="@string/showStories"
+      app:showAsAction="ifRoom"/>
+
+  <item
+      android:id="@+id/jobStories"
+      android:enabled="true"
+      android:icon="@drawable/ic_business_white_24dp"
+      android:title="@string/jobStories"
+      app:showAsAction="ifRoom"/>
+
+</menu>
