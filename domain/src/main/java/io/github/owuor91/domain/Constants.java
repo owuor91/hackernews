@@ -11,4 +11,5 @@ public class Constants {
   public static final String JOB_STORY = "jobstories";
   public static final String ASK_STORY = "askstories";
 
+  public static final String CUSTOM_FONT_ASSET_PATH = "fonts/GothamRoundedBook.ttf";
 }

@@ -43,6 +43,7 @@ dependencies {
   annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 
   implementation 'com.facebook.stetho:stetho:1.5.0'
+  implementation 'uk.co.chrisjenx:calligraphy:2.3.0'
 
   api project(path: ':presentation')
 }

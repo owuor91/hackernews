@@ -22,7 +22,7 @@ public class ItemDbRepository implements ItemRepository {
   }
 
   @Override public Single<List<Item>> getTopStories() {
-    return itemDao.getItems(Constants.SHOW_STORY)
+    return itemDao.getItems(Constants.TOP_STORY)
         .flatMapPublisher(Flowable::fromIterable)
         .map(ItemMapper::transformFromDb)
         .toList();

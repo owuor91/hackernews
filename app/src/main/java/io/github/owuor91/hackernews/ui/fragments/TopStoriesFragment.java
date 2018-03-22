@@ -9,15 +9,15 @@ import android.widget.Toast;
 import butterknife.BindView;
 import io.github.owuor91.domain.models.Item;
 import io.github.owuor91.hackernews.R;
-import io.github.owuor91.presentation.home.TopStoriesPresenter;
+import io.github.owuor91.presentation.home.StoriesPresenter;
 import java.util.List;
 import javax.inject.Inject;
 
-public class TopStoriesFragment extends BaseFragment implements TopStoriesPresenter.View {
+public class TopStoriesFragment extends BaseFragment implements StoriesPresenter.TopStoriesView {
   @BindView(R.id.topStoriesFragmentRecyclerView) RecyclerView recyclerView;
   @BindView(R.id.topStoriesFragmentProgressBar) ProgressBar progressBar;
 
-  @Inject TopStoriesPresenter topStoriesPresenter;
+  @Inject StoriesPresenter storiesPresenter;
 
   public TopStoriesFragment() {
   }
@@ -33,8 +33,8 @@ public class TopStoriesFragment extends BaseFragment implements TopStoriesPresen
 
   @Override public void onStart() {
     super.onStart();
-    topStoriesPresenter.setView(this);
-    topStoriesPresenter.getTopStoryItems();
+    storiesPresenter.setTopStoriesView(this);
+    storiesPresenter.getTopStoryItems();
   }
 
   @Override public void showProgress() {
@@ -46,11 +46,11 @@ public class TopStoriesFragment extends BaseFragment implements TopStoriesPresen
   }
 
   @Override public void showTopStoryItems(List<Item> itemList) {
-    Toast.makeText(getContext(), itemList.size() + " items found", Toast.LENGTH_LONG).show();
+    Toast.makeText(getContext(), itemList.size() + " top items found", Toast.LENGTH_LONG).show();
   }
 
   @Override protected void dispose() {
     super.dispose();
-    topStoriesPresenter.dispose();
+    storiesPresenter.dispose();
   }
 }

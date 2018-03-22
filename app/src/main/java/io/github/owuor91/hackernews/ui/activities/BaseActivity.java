@@ -1,5 +1,6 @@
 package io.github.owuor91.hackernews.ui.activities;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
@@ -10,6 +11,7 @@ import io.github.owuor91.data.util.RxUtil;
 import io.github.owuor91.hackernews.MyApplication;
 import io.github.owuor91.hackernews.di.activity.ActivityComponent;
 import io.reactivex.disposables.CompositeDisposable;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 /**
  * Created by johnowuor on 20/03/2018.
@@ -35,6 +37,10 @@ public class BaseActivity extends AppCompatActivity{
     super.onStart();
     ButterKnife.bind(this);
     compositeDisposable = RxUtil.initDisposables(compositeDisposable);
+  }
+
+  @Override protected void attachBaseContext(Context base) {
+    super.attachBaseContext(CalligraphyContextWrapper.wrap(base));
   }
 
   protected void dispose() {
