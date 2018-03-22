@@ -9,13 +9,13 @@ import java.util.List;
  */
 
 public interface ItemRepository {
-  Single<List<Item>> getTopStories();
+  Single<List<Item>> getTopItems();
 
-  Single<List<Item>> getShowStories();
+  Single<List<Item>> getShowItems();
 
-  Single<List<Item>> getJobStories();
+  Single<List<Item>> getJobItems();
 
-  Single<List<Item>> getAskStories();
+  Single<List<Item>> getAskItems();
 
   Single<List<Item>> saveItems(List<Item> itemList);
 

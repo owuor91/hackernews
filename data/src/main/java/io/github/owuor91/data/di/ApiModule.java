@@ -6,6 +6,7 @@ import dagger.Module;
 import dagger.Provides;
 import io.github.owuor91.data.BuildConfig;
 import io.github.owuor91.data.api.ItemsApi;
+import io.github.owuor91.data.api.StoriesApi;
 import io.github.owuor91.domain.di.DIConstants;
 import java.util.concurrent.TimeUnit;
 import javax.inject.Named;
@@ -38,5 +39,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
   @Provides public ItemsApi provideItemsApi(@Named(DIConstants.DEFAULT) Retrofit retrofit) {
     return retrofit.create(ItemsApi.class);
+  }
+
+  @Provides public StoriesApi provideStoriesApi(@Named(DIConstants.DEFAULT) Retrofit retrofit) {
+    return retrofit.create(StoriesApi.class);
   }
 }

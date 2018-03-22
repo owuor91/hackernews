@@ -21,28 +21,28 @@ public class ItemDbRepository implements ItemRepository {
     this.itemDao = itemDao;
   }
 
-  @Override public Single<List<Item>> getTopStories() {
+  @Override public Single<List<Item>> getTopItems() {
     return itemDao.getItems(Constants.TOP_STORY)
         .flatMapPublisher(Flowable::fromIterable)
         .map(ItemMapper::transformFromDb)
         .toList();
   }
 
-  @Override public Single<List<Item>> getShowStories() {
+  @Override public Single<List<Item>> getShowItems() {
     return itemDao.getItems(Constants.SHOW_STORY)
         .flatMapPublisher(Flowable::fromIterable)
         .map(ItemMapper::transformFromDb)
         .toList();
   }
 
-  @Override public Single<List<Item>> getJobStories() {
+  @Override public Single<List<Item>> getJobItems() {
     return itemDao.getItems(Constants.JOB_STORY)
         .flatMapPublisher(Flowable::fromIterable)
         .map(ItemMapper::transformFromDb)
         .toList();
   }
 
-  @Override public Single<List<Item>> getAskStories() {
+  @Override public Single<List<Item>> getAskItems() {
     return itemDao.getItems(Constants.ASK_STORY)
         .flatMapPublisher(Flowable::fromIterable)
         .map(ItemMapper::transformFromDb)

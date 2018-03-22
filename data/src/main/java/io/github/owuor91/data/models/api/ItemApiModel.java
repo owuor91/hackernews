@@ -1,4 +1,4 @@
-package io.github.owuor91.data.apiModels;
+package io.github.owuor91.data.models.api;
 
 /**
  * Created by johnowuor on 22/03/2018.

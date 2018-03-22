@@ -5,7 +5,7 @@ import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
-import io.github.owuor91.data.dbModels.ItemDbModel;
+import io.github.owuor91.data.models.db.ItemDbModel;
 import io.reactivex.Single;
 import java.util.List;
 

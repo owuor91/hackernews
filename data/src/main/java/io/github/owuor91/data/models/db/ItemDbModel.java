@@ -1,4 +1,4 @@
-package io.github.owuor91.data.dbModels;
+package io.github.owuor91.data.models.db;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;

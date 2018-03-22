@@ -3,8 +3,11 @@ package io.github.owuor91.presentation.home;
 import io.github.owuor91.data.util.RxUtil;
 import io.github.owuor91.domain.di.DIConstants;
 import io.github.owuor91.domain.models.Item;
+import io.github.owuor91.domain.models.Story;
 import io.github.owuor91.domain.repository.ItemRepository;
+import io.github.owuor91.domain.repository.StoryRepository;
 import io.github.owuor91.presentation.BasePresenter;
+import io.reactivex.Flowable;
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -27,11 +30,17 @@ public class StoriesPresenter implements BasePresenter {
   private CompositeDisposable compositeDisposable;
   private ItemRepository itemApiRepository;
   private ItemRepository itemDbRepository;
+  private StoryRepository storyApiRepository;
+  private StoryRepository storyDbRepository;
 
   @Inject public StoriesPresenter(@Named(DIConstants.API) ItemRepository itemApiRepository,
-      @Named(DIConstants.DB) ItemRepository itemDbRepository) {
+      @Named(DIConstants.DB) ItemRepository itemDbRepository,
+      @Named(DIConstants.API) StoryRepository storyApiRepository,
+      @Named(DIConstants.DB) StoryRepository storyDbRepository) {
     this.itemApiRepository = itemApiRepository;
     this.itemDbRepository = itemDbRepository;
+    this.storyApiRepository = storyApiRepository;
+    this.storyDbRepository = storyDbRepository;
   }
 
   public void setTopStoriesView(TopStoriesView topStoriesView) {
@@ -54,11 +63,11 @@ public class StoriesPresenter implements BasePresenter {
     compositeDisposable = RxUtil.initDisposables(compositeDisposable);
     topStoriesView.showProgress();
 
-    Disposable disposable = itemDbRepository.getTopStories()
+    Disposable disposable = itemDbRepository.getTopItems()
         .subscribeOn(Schedulers.io())
         .flatMap(itemList -> {
           if (itemList.isEmpty()) {
-            return itemApiRepository.getTopStories();
+            return itemApiRepository.getTopItems();
           } else {
             return Single.just(itemList);
           }
@@ -75,11 +84,11 @@ public class StoriesPresenter implements BasePresenter {
     compositeDisposable = RxUtil.initDisposables(compositeDisposable);
     showStoriesView.showProgress();
 
-    Disposable disposable = itemDbRepository.getShowStories()
+    Disposable disposable = itemDbRepository.getShowItems()
         .subscribeOn(Schedulers.io())
         .flatMap(itemList -> {
           if (itemList.isEmpty()) {
-            return itemApiRepository.getShowStories();
+            return itemApiRepository.getShowItems();
           } else {
             return Single.just(itemList);
           }
@@ -96,11 +105,11 @@ public class StoriesPresenter implements BasePresenter {
     compositeDisposable = RxUtil.initDisposables(compositeDisposable);
     jobStoriesView.showProgress();
 
-    Disposable disposable = itemDbRepository.getJobStories()
+    Disposable disposable = itemDbRepository.getJobItems()
         .subscribeOn(Schedulers.io())
         .flatMap(itemList -> {
           if (itemList.isEmpty()) {
-            return itemApiRepository.getJobStories();
+            return itemApiRepository.getJobItems();
           } else {
             return Single.just(itemList);
           }
@@ -117,21 +126,27 @@ public class StoriesPresenter implements BasePresenter {
     compositeDisposable = RxUtil.initDisposables(compositeDisposable);
     askStoriesView.showProgress();
 
-    Disposable disposable = itemDbRepository.getAskStories()
+    Disposable disposable = getAskItems()
         .subscribeOn(Schedulers.io())
-        .flatMap(itemList -> {
-          if (itemList.isEmpty()) {
-            return itemApiRepository.getAskStories();
-          } else {
-            return Single.just(itemList);
-          }
-        })
+        .flatMapPublisher(Flowable::fromIterable)
+        .flatMapSingle(item -> storyApiRepository.getStory(item))
+        .toList()
         .observeOn(AndroidSchedulers.mainThread())
-        .doOnSuccess(itemList -> askStoriesView.hideProgress())
+        .doOnSuccess(stories -> askStoriesView.hideProgress())
         .doOnError(throwable -> askStoriesView.hideProgress())
-        .subscribe(askStoriesView::showAskStoryItems, askStoriesView::handleError);
+        .subscribe(askStoriesView::showAskStories, askStoriesView::handleError);
 
     compositeDisposable.add(disposable);
+  }
+
+  private Single<List<Item>> getAskItems() {
+    return itemDbRepository.getAskItems().flatMap(itemList -> {
+      if (itemList.isEmpty()) {
+        return itemApiRepository.getAskItems();
+      } else {
+        return Single.just(itemList);
+      }
+    });
   }
 
   @Override public void dispose() {
@@ -167,6 +182,6 @@ public class StoriesPresenter implements BasePresenter {
 
     void hideProgress();
 
-    void showAskStoryItems(List<Item> itemList);
+    void showAskStories(List<Story> stories);
   }
 }

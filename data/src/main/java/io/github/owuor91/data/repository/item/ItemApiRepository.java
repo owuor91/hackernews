@@ -2,6 +2,7 @@ package io.github.owuor91.data.repository.item;
 
 import io.github.owuor91.data.api.ItemsApi;
 import io.github.owuor91.data.mappers.ItemMapper;
+import io.github.owuor91.data.util.OperationImpossibleException;
 import io.github.owuor91.domain.Constants;
 import io.github.owuor91.domain.di.DIConstants;
 import io.github.owuor91.domain.models.Item;
@@ -24,7 +25,7 @@ public class ItemApiRepository implements ItemRepository {
     this.itemDbRepository = itemDbRepository;
   }
 
-  @Override public Single<List<Item>> getTopStories() {
+  @Override public Single<List<Item>> getTopItems() {
     return itemsApi.getTopStories()
         .flatMap(Flowable::fromIterable)
         .map(integer -> ItemMapper.makeItemApiModel(integer, Constants.TOP_STORY))
@@ -33,32 +34,32 @@ public class ItemApiRepository implements ItemRepository {
         .flatMap(itemDbRepository::saveItems);
   }
 
-  @Override public Single<List<Item>> getShowStories() {
+  @Override public Single<List<Item>> getShowItems() {
     return itemsApi.getShowStories()
         .flatMap(Flowable::fromIterable)
         .map(integer -> ItemMapper.makeItemApiModel(integer, Constants.SHOW_STORY))
         .map(ItemMapper::transformFromApi).toList().flatMap(itemDbRepository::saveItems);
   }
 
-  @Override public Single<List<Item>> getJobStories() {
+  @Override public Single<List<Item>> getJobItems() {
     return itemsApi.getJobStories()
         .flatMap(Flowable::fromIterable)
         .map(integer -> ItemMapper.makeItemApiModel(integer, Constants.JOB_STORY))
         .map(ItemMapper::transformFromApi).toList().flatMap(itemDbRepository::saveItems);
   }
 
-  @Override public Single<List<Item>> getAskStories() {
-    return itemsApi.getJobStories()
+  @Override public Single<List<Item>> getAskItems() {
+    return itemsApi.getAskStories()
         .flatMap(Flowable::fromIterable)
         .map(integer -> ItemMapper.makeItemApiModel(integer, Constants.ASK_STORY))
         .map(ItemMapper::transformFromApi).toList().flatMap(itemDbRepository::saveItems);
   }
 
   @Override public Single<List<Item>> saveItems(List<Item> itemList) {
-    return null;
+    return Single.error(new OperationImpossibleException());
   }
 
   @Override public Single<Object> deleteItems(List<Item> itemList) {
-    return null;
+    return Single.error(new OperationImpossibleException());
   }
 }

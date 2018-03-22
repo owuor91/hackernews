@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 import butterknife.BindView;
-import io.github.owuor91.domain.models.Item;
+import io.github.owuor91.domain.models.Story;
 import io.github.owuor91.hackernews.R;
 import io.github.owuor91.presentation.home.StoriesPresenter;
 import java.util.List;
@@ -44,7 +44,7 @@ public class AskStoriesFragment extends BaseFragment implements StoriesPresenter
     progressBar.setVisibility(View.GONE);
   }
 
-  @Override public void showAskStoryItems(List<Item> itemList) {
+  @Override public void showAskStories(List<Story> itemList) {
     Toast.makeText(getContext(), itemList.size() + " ask items found", Toast.LENGTH_LONG).show();
   }
 

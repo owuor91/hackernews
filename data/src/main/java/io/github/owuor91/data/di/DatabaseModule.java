@@ -6,6 +6,7 @@ import dagger.Module;
 import dagger.Provides;
 import io.github.owuor91.data.sql.HackerNewsDatabase;
 import io.github.owuor91.data.sql.dao.ItemDao;
+import io.github.owuor91.data.sql.dao.StoryDao;
 import io.github.owuor91.domain.di.DIConstants;
 import javax.inject.Named;
 
@@ -20,5 +21,9 @@ import javax.inject.Named;
 
   @Provides public ItemDao provideItemDao(HackerNewsDatabase hackerNewsDatabase) {
     return hackerNewsDatabase.itemDao();
+  }
+
+  @Provides public StoryDao provideStoryDao(HackerNewsDatabase hackerNewsDatabase) {
+    return hackerNewsDatabase.storyDao();
   }
 }

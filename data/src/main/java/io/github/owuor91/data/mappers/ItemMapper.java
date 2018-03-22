@@ -1,7 +1,7 @@
 package io.github.owuor91.data.mappers;
 
-import io.github.owuor91.data.apiModels.ItemApiModel;
-import io.github.owuor91.data.dbModels.ItemDbModel;
+import io.github.owuor91.data.models.api.ItemApiModel;
+import io.github.owuor91.data.models.db.ItemDbModel;
 import io.github.owuor91.domain.models.Item;
 
 /**
