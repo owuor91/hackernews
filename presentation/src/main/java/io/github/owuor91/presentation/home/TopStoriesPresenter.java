@@ -1,6 +1,7 @@
 package io.github.owuor91.presentation.home;
 
 import io.github.owuor91.data.util.RxUtil;
+import io.github.owuor91.domain.Constants;
 import io.github.owuor91.domain.di.DIConstants;
 import io.github.owuor91.domain.models.Item;
 import io.github.owuor91.domain.models.Story;
@@ -69,6 +70,20 @@ public class TopStoriesPresenter implements BasePresenter {
         return Single.just(itemList);
       }
     });
+  }
+
+  public void getDbTopStories() {
+    compositeDisposable = RxUtil.initDisposables(compositeDisposable);
+    view.showProgress();
+
+    Disposable disposable = storyDbRepository.getStoriesList(Constants.TOP_STORY)
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .doOnSuccess(stories -> view.hideProgress())
+        .doOnError(throwable -> view.hideProgress())
+        .subscribe(view::showTopStories, view::handleError);
+
+    compositeDisposable.add(disposable);
   }
 
   @Override public void dispose() {

@@ -1,6 +1,7 @@
 package io.github.owuor91.hackernews.di.activity;
 
 import dagger.Subcomponent;
+import io.github.owuor91.hackernews.di.adapter.AdapterComponent;
 import io.github.owuor91.hackernews.di.fragment.FragmentComponent;
 import io.github.owuor91.hackernews.ui.activities.BaseActivity;
 import io.github.owuor91.hackernews.ui.activities.HomeActivity;
@@ -11,6 +12,8 @@ import io.github.owuor91.hackernews.ui.activities.HomeActivity;
 
 @ActivityScope @Subcomponent(modules = { ActivityModule.class }) public interface ActivityComponent {
   FragmentComponent.Builder fragmentBuilder();
+
+  AdapterComponent.Builder adapterBuilder();
 
   void inject(HomeActivity homeActivity);
 

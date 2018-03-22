@@ -1,6 +1,7 @@
 package io.github.owuor91.presentation.home;
 
 import io.github.owuor91.data.util.RxUtil;
+import io.github.owuor91.domain.Constants;
 import io.github.owuor91.domain.di.DIConstants;
 import io.github.owuor91.domain.models.Item;
 import io.github.owuor91.domain.models.Story;
@@ -43,17 +44,30 @@ public class JobStoriesPresenter implements BasePresenter {
     this.view = view;
   }
 
-  public void getJobStoryItems() {
+  public void getJobStories() {
     compositeDisposable = RxUtil.initDisposables(compositeDisposable);
     view.showProgress();
 
-    Disposable disposable = getJobItems()
-        .subscribeOn(Schedulers.io())
+    Disposable disposable = getJobItems().subscribeOn(Schedulers.io())
         .flatMapPublisher(Flowable::fromIterable)
         .flatMapSingle(item -> storyApiRepository.getStory(item))
         .toList()
         .observeOn(AndroidSchedulers.mainThread())
         .doOnSuccess(itemList -> view.hideProgress())
+        .doOnError(throwable -> view.hideProgress())
+        .subscribe(view::showJobStories, view::handleError);
+
+    compositeDisposable.add(disposable);
+  }
+
+  public void getDbJobStories() {
+    compositeDisposable = RxUtil.initDisposables(compositeDisposable);
+    view.showProgress();
+
+    Disposable disposable = storyDbRepository.getStoriesList(Constants.JOB_STORY)
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .doOnSuccess(stories -> view.hideProgress())
         .doOnError(throwable -> view.hideProgress())
         .subscribe(view::showJobStories, view::handleError);
 

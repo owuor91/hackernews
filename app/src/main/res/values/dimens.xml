@@ -1,4 +1,7 @@
 <resources>
   <dimen name="fab_margin">16dp</dimen>
   <dimen name="toolbarTitleTextSize">20sp</dimen>
+  <dimen name="defaultMargin">16dp</dimen>
+  <dimen name="smallMargin">8dp</dimen>
+  <dimen name="separatorHeight">0.5dp</dimen>
 </resources>

@@ -1,6 +1,7 @@
 package io.github.owuor91.presentation.home;
 
 import io.github.owuor91.data.util.RxUtil;
+import io.github.owuor91.domain.Constants;
 import io.github.owuor91.domain.di.DIConstants;
 import io.github.owuor91.domain.models.Item;
 import io.github.owuor91.domain.models.Story;
@@ -43,7 +44,7 @@ public class ShowStoriesPresenter implements BasePresenter {
     this.view = view;
   }
 
-  public void getShowStoryItems() {
+  public void getShowStories() {
     compositeDisposable = RxUtil.initDisposables(compositeDisposable);
     view.showProgress();
 
@@ -68,6 +69,20 @@ public class ShowStoriesPresenter implements BasePresenter {
         return Single.just(itemList);
       }
     });
+  }
+
+  public void getDbShowStories() {
+    compositeDisposable = RxUtil.initDisposables(compositeDisposable);
+    view.showProgress();
+
+    Disposable disposable = storyDbRepository.getStoriesList(Constants.SHOW_STORY)
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .doOnSuccess(stories -> view.hideProgress())
+        .doOnError(throwable -> view.hideProgress())
+        .subscribe(view::showShowStories, view::handleError);
+
+    compositeDisposable.add(disposable);
   }
 
   @Override public void dispose() {

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="@dimen/defaultMargin"
+      android:layout_marginLeft="@dimen/defaultMargin"
+      android:layout_marginRight="@dimen/defaultMargin"
+      android:layout_marginTop="@dimen/defaultMargin"
+      android:orientation="vertical"
+      >
+
+    <TextView
+        android:id="@+id/storyListItemTvBy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        />
+
+    <TextView
+        android:id="@+id/storyListItemTvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        />
+    <TextView
+        android:id="@+id/storyListItemTvText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        />
+    <TextView
+        android:id="@+id/storyListItemTvUrl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        />
+    <TextView
+        android:id="@+id/storyListItemTvScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        />
+
+  </LinearLayout>
+
+  <View
+      android:layout_width="match_parent"
+      android:layout_height="@dimen/separatorHeight"
+      android:background="@android:color/black"
+      />
+
+</LinearLayout>
