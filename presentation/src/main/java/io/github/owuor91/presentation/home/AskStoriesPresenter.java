@@ -44,7 +44,7 @@ public class AskStoriesPresenter implements BasePresenter {
     this.view = view;
   }
 
-  public void getAskStoryItems() {
+  public void getAskStories() {
     compositeDisposable = RxUtil.initDisposables(compositeDisposable);
     view.showProgress();
 

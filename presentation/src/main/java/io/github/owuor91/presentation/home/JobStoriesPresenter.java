@@ -3,9 +3,11 @@ package io.github.owuor91.presentation.home;
 import io.github.owuor91.data.util.RxUtil;
 import io.github.owuor91.domain.di.DIConstants;
 import io.github.owuor91.domain.models.Item;
+import io.github.owuor91.domain.models.Story;
 import io.github.owuor91.domain.repository.ItemRepository;
 import io.github.owuor91.domain.repository.StoryRepository;
 import io.github.owuor91.presentation.BasePresenter;
+import io.reactivex.Flowable;
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -45,21 +47,27 @@ public class JobStoriesPresenter implements BasePresenter {
     compositeDisposable = RxUtil.initDisposables(compositeDisposable);
     view.showProgress();
 
-    Disposable disposable = itemDbRepository.getJobItems()
+    Disposable disposable = getJobItems()
         .subscribeOn(Schedulers.io())
-        .flatMap(itemList -> {
-          if (itemList.isEmpty()) {
-            return itemApiRepository.getJobItems();
-          } else {
-            return Single.just(itemList);
-          }
-        })
+        .flatMapPublisher(Flowable::fromIterable)
+        .flatMapSingle(item -> storyApiRepository.getStory(item))
+        .toList()
         .observeOn(AndroidSchedulers.mainThread())
         .doOnSuccess(itemList -> view.hideProgress())
         .doOnError(throwable -> view.hideProgress())
-        .subscribe(view::showJobStoryItems, view::handleError);
+        .subscribe(view::showJobStories, view::handleError);
 
     compositeDisposable.add(disposable);
+  }
+
+  private Single<List<Item>> getJobItems() {
+    return itemDbRepository.getJobItems().flatMap(itemList -> {
+      if (itemList.isEmpty()) {
+        return itemApiRepository.getJobItems();
+      } else {
+        return Single.just(itemList);
+      }
+    });
   }
 
   @Override public void dispose() {
@@ -71,6 +79,6 @@ public class JobStoriesPresenter implements BasePresenter {
 
     void hideProgress();
 
-    void showJobStoryItems(List<Item> itemList);
+    void showJobStories(List<Story> jobStoriesList);
   }
 }

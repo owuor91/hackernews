@@ -33,7 +33,7 @@ public class AskStoriesFragment extends BaseFragment implements AskStoriesPresen
   @Override public void onStart() {
     super.onStart();
     askStoriesPresenter.setView(this);
-    askStoriesPresenter.getAskStoryItems();
+    askStoriesPresenter.getAskStories();
   }
 
   @Override public void showProgress() {
@@ -44,8 +44,8 @@ public class AskStoriesFragment extends BaseFragment implements AskStoriesPresen
     progressBar.setVisibility(View.GONE);
   }
 
-  @Override public void showAskStories(List<Story> itemList) {
-    Toast.makeText(getContext(), itemList.size() + " ask items found", Toast.LENGTH_LONG).show();
+  @Override public void showAskStories(List<Story> askStoriesList) {
+    Toast.makeText(getContext(), askStoriesList.size() + " ask stories found", Toast.LENGTH_LONG).show();
   }
 
   @Override protected void dispose() {

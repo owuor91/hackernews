@@ -3,9 +3,11 @@ package io.github.owuor91.presentation.home;
 import io.github.owuor91.data.util.RxUtil;
 import io.github.owuor91.domain.di.DIConstants;
 import io.github.owuor91.domain.models.Item;
+import io.github.owuor91.domain.models.Story;
 import io.github.owuor91.domain.repository.ItemRepository;
 import io.github.owuor91.domain.repository.StoryRepository;
 import io.github.owuor91.presentation.BasePresenter;
+import io.reactivex.Flowable;
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -42,31 +44,27 @@ public class TopStoriesPresenter implements BasePresenter {
     this.view = view;
   }
 
-  public void getTopStoryItems() {
+  public void getTopStories() {
     compositeDisposable = RxUtil.initDisposables(compositeDisposable);
     view.showProgress();
 
-    Disposable disposable = itemDbRepository.getTopItems()
+    Disposable disposable = getTopItems()
         .subscribeOn(Schedulers.io())
-        .flatMap(itemList -> {
-          if (itemList.isEmpty()) {
-            return itemApiRepository.getTopItems();
-          } else {
-            return Single.just(itemList);
-          }
-        })
+        .flatMapPublisher(Flowable::fromIterable)
+        .flatMapSingle(item -> storyApiRepository.getStory(item))
+        .toList()
         .observeOn(AndroidSchedulers.mainThread())
         .doOnSuccess(itemList -> view.hideProgress())
         .doOnError(throwable -> view.hideProgress())
-        .subscribe(view::showTopStoryItems, view::handleError);
+        .subscribe(view::showTopStories, view::handleError);
 
     compositeDisposable.add(disposable);
   }
 
-  private Single<List<Item>> getAskItems() {
-    return itemDbRepository.getAskItems().flatMap(itemList -> {
+  private Single<List<Item>> getTopItems() {
+    return itemDbRepository.getTopItems().flatMap(itemList -> {
       if (itemList.isEmpty()) {
-        return itemApiRepository.getAskItems();
+        return itemApiRepository.getTopItems();
       } else {
         return Single.just(itemList);
       }
@@ -82,6 +80,6 @@ public class TopStoriesPresenter implements BasePresenter {
 
     void hideProgress();
 
-    void showTopStoryItems(List<Item> itemList);
+    void showTopStories(List<Story> topStoriesList);
   }
 }

@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 import butterknife.BindView;
-import io.github.owuor91.domain.models.Item;
+import io.github.owuor91.domain.models.Story;
 import io.github.owuor91.hackernews.R;
 import io.github.owuor91.presentation.home.JobStoriesPresenter;
 import java.util.List;
@@ -45,8 +45,8 @@ public class JobStoriesFragment extends BaseFragment implements JobStoriesPresen
     progressBar.setVisibility(View.GONE);
   }
 
-  @Override public void showJobStoryItems(List<Item> itemList) {
-    Toast.makeText(getContext(), itemList.size() + " job items found", Toast.LENGTH_LONG).show();
+  @Override public void showJobStories(List<Story> jobStoriesList) {
+    Toast.makeText(getContext(), jobStoriesList.size() + " job stories found", Toast.LENGTH_LONG).show();
   }
 
   @Override protected void dispose() {

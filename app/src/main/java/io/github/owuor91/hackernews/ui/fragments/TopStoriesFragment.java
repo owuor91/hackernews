@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 import butterknife.BindView;
-import io.github.owuor91.domain.models.Item;
+import io.github.owuor91.domain.models.Story;
 import io.github.owuor91.hackernews.R;
 import io.github.owuor91.presentation.home.TopStoriesPresenter;
 import java.util.List;
@@ -34,7 +34,7 @@ public class TopStoriesFragment extends BaseFragment implements TopStoriesPresen
   @Override public void onStart() {
     super.onStart();
     topStoriesPresenter.setView(this);
-    topStoriesPresenter.getTopStoryItems();
+    topStoriesPresenter.getTopStories();
   }
 
   @Override public void showProgress() {
@@ -45,8 +45,8 @@ public class TopStoriesFragment extends BaseFragment implements TopStoriesPresen
     progressBar.setVisibility(View.GONE);
   }
 
-  @Override public void showTopStoryItems(List<Item> itemList) {
-    Toast.makeText(getContext(), itemList.size() + " top items found", Toast.LENGTH_LONG).show();
+  @Override public void showTopStories(List<Story> topStoriesList) {
+    Toast.makeText(getContext(), topStoriesList.size() + " top stories found", Toast.LENGTH_LONG).show();
   }
 
   @Override protected void dispose() {
