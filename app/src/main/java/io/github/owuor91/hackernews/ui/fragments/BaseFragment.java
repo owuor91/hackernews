@@ -6,11 +6,14 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 import butterknife.ButterKnife;
+import io.github.owuor91.data.util.RxUtil;
 import io.github.owuor91.hackernews.di.activity.ActivityComponent;
 import io.github.owuor91.hackernews.di.fragment.FragmentComponent;
 import io.github.owuor91.hackernews.di.fragment.FragmentModule;
 import io.github.owuor91.hackernews.ui.activities.BaseActivity;
+import io.reactivex.disposables.CompositeDisposable;
 
 /**
  * Created by johnowuor on 21/03/2018.
@@ -18,6 +21,7 @@ import io.github.owuor91.hackernews.ui.activities.BaseActivity;
 
 public class BaseFragment extends Fragment {
   private static final int NO_LAYOUT = -1;
+  private CompositeDisposable compositeDisposable;
 
   @Override public void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -39,11 +43,19 @@ public class BaseFragment extends Fragment {
     }
   }
 
+  public void handleError(Throwable throwable) {
+    Toast.makeText(getContext(), throwable.getMessage(), Toast.LENGTH_LONG).show();
+  }
+
   protected FragmentComponent injector() {
     return activityInjector().fragmentBuilder().fragmentModule(new FragmentModule(this)).build();
   }
 
   protected ActivityComponent activityInjector() {
     return ((BaseActivity) getActivity()).injector();
+  }
+
+  protected void dispose() {
+    RxUtil.dispose(compositeDisposable);
   }
 }

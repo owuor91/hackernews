@@ -17,6 +17,7 @@ import javax.inject.Named;
 
 @Module(includes = AndroidModule.class, subcomponents = { ActivityComponent.class }) public class ApplicationModule {
   private final MyApplication myApplication;
+
   public ApplicationModule(MyApplication myApplication) {
     this.myApplication = myApplication;
   }

@@ -15,7 +15,7 @@ import javax.inject.Named;
 
 @Module public class DatabaseModule {
   @Provides public HackerNewsDatabase provideHackerNewsDatabase(@Named(DIConstants.APP) Context context) {
-    return Room.databaseBuilder(context, HackerNewsDatabase.class, "hackerNews").build();
+    return Room.databaseBuilder(context, HackerNewsDatabase.class, "hackernews_db").build();
   }
 
   @Provides public ItemDao provideItemDao(HackerNewsDatabase hackerNewsDatabase) {

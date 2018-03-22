@@ -18,9 +18,9 @@ import javax.inject.Named;
     this.context = context;
   }
 
-  @Provides @Named(DIConstants.APP) public Context provideContext() {
-    return context;
-  }
+  //@Provides @Named(DIConstants.APP) public Context provideContext() {
+  //  return context;
+  //}
 
   @Provides public SharedPreferences provideSharedPreferences(@Named(DIConstants.APP) Context context) {
     return context.getSharedPreferences("hacker_news_sharedprefs", Context.MODE_PRIVATE);

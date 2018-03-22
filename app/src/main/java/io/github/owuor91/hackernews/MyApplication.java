@@ -1,6 +1,7 @@
 package io.github.owuor91.hackernews;
 
 import android.app.Application;
+import com.facebook.stetho.Stetho;
 import io.github.owuor91.hackernews.di.activity.ActivityComponent;
 import io.github.owuor91.hackernews.di.activity.ActivityModule;
 import io.github.owuor91.hackernews.di.app.AndroidModule;
@@ -23,6 +24,8 @@ public class MyApplication extends Application{
         .androidModule(new AndroidModule(this))
         .build();
     applicationComponent.inject(this);
+
+    Stetho.initializeWithDefaults(this);
   }
 
   public ActivityComponent getActivityInjector(BaseActivity baseActivity){
