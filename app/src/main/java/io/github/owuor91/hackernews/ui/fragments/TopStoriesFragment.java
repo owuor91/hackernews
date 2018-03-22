@@ -9,15 +9,15 @@ import android.widget.Toast;
 import butterknife.BindView;
 import io.github.owuor91.domain.models.Item;
 import io.github.owuor91.hackernews.R;
-import io.github.owuor91.presentation.home.StoriesPresenter;
+import io.github.owuor91.presentation.home.TopStoriesPresenter;
 import java.util.List;
 import javax.inject.Inject;
 
-public class TopStoriesFragment extends BaseFragment implements StoriesPresenter.TopStoriesView {
+public class TopStoriesFragment extends BaseFragment implements TopStoriesPresenter.View {
   @BindView(R.id.topStoriesFragmentRecyclerView) RecyclerView recyclerView;
   @BindView(R.id.topStoriesFragmentProgressBar) ProgressBar progressBar;
 
-  @Inject StoriesPresenter storiesPresenter;
+  @Inject TopStoriesPresenter topStoriesPresenter;
 
   public TopStoriesFragment() {
   }
@@ -33,8 +33,8 @@ public class TopStoriesFragment extends BaseFragment implements StoriesPresenter
 
   @Override public void onStart() {
     super.onStart();
-    storiesPresenter.setTopStoriesView(this);
-    storiesPresenter.getTopStoryItems();
+    topStoriesPresenter.setView(this);
+    topStoriesPresenter.getTopStoryItems();
   }
 
   @Override public void showProgress() {
@@ -51,6 +51,6 @@ public class TopStoriesFragment extends BaseFragment implements StoriesPresenter
 
   @Override protected void dispose() {
     super.dispose();
-    storiesPresenter.dispose();
+    topStoriesPresenter.dispose();
   }
 }
