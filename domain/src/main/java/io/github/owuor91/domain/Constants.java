@@ -9,5 +9,6 @@ public class Constants {
   public static final String TOP_STORY = "topstories";
   public static final String SHOW_STORY = "showstories";
   public static final String JOB_STORY = "jobstories";
+  public static final String ASK_STORY = "askstories";
 
 }

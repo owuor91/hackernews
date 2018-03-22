@@ -8,6 +8,8 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import butterknife.BindView;
 import io.github.owuor91.hackernews.R;
+import io.github.owuor91.hackernews.ui.BottomNavUtil;
+import io.github.owuor91.hackernews.ui.fragments.AskStoriesFragment;
 import io.github.owuor91.hackernews.ui.fragments.JobStoriesFragment;
 import io.github.owuor91.hackernews.ui.fragments.ShowStoriesFragment;
 import io.github.owuor91.hackernews.ui.fragments.TopStoriesFragment;
@@ -40,6 +42,8 @@ public class HomeActivity extends BaseActivity implements HomePresenter.View {
         .replace(R.id.homeActivityFramelayout, new TopStoriesFragment())
         .addToBackStack(null)
         .commit();
+
+    BottomNavUtil.removeShiftMode(bottomNavigationView);
   }
 
   @Override protected void onResume() {
@@ -56,6 +60,8 @@ public class HomeActivity extends BaseActivity implements HomePresenter.View {
         case R.id.jobStories:
           openSelectedTab(new JobStoriesFragment(), getString(R.string.jobStories));
           break;
+        case R.id.askStories:
+          openSelectedTab(new AskStoriesFragment(), getString(R.string.askStories));
       }
       return true;
     });

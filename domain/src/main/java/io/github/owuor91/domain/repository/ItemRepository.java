@@ -15,6 +15,8 @@ public interface ItemRepository {
 
   Single<List<Item>> getJobStories();
 
+  Single<List<Item>> getAskStories();
+
   Single<List<Item>> saveItems(List<Item> itemList);
 
   Single<Object> deleteItems(List<Item> itemList);

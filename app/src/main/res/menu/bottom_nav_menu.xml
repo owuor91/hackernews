@@ -22,4 +22,11 @@
       android:title="@string/jobStories"
       app:showAsAction="ifRoom"/>
 
+  <item
+      android:id="@+id/askStories"
+      android:enabled="true"
+      android:icon="@drawable/ic_forum_white_24dp"
+      android:title="@string/askStories"
+      app:showAsAction="ifRoom"/>
+
 </menu>

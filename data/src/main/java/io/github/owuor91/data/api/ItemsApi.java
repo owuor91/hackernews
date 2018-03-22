@@ -14,4 +14,6 @@ public interface ItemsApi {
   @GET("showstories.json") Flowable<List<Integer>> getShowStories();
 
   @GET("jobstories.json") Flowable<List<Integer>> getJobStories();
+
+  @GET("askstories.json") Flowable<List<Integer>> getAskStories();
 }

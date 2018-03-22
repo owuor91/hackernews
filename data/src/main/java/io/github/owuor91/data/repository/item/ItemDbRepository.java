@@ -42,6 +42,13 @@ public class ItemDbRepository implements ItemRepository {
         .toList();
   }
 
+  @Override public Single<List<Item>> getAskStories() {
+    return itemDao.getItems(Constants.ASK_STORY)
+        .flatMapPublisher(Flowable::fromIterable)
+        .map(ItemMapper::transformFromDb)
+        .toList();
+  }
+
   @Override public Single<List<Item>> saveItems(List<Item> itemList) {
     return Single.just(itemList)
         .flatMapPublisher(Flowable::fromIterable)

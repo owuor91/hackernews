@@ -47,6 +47,14 @@ public class ItemApiRepository implements ItemRepository {
         .toList();
   }
 
+  @Override public Single<List<Item>> getAskStories() {
+    return itemsApi.getJobStories()
+        .flatMap(Flowable::fromIterable)
+        .map(integer -> ItemMapper.makeItemApiModel(integer, Constants.ASK_STORY))
+        .map(ItemMapper::transformFromApi)
+        .toList();
+  }
+
   @Override public Single<List<Item>> saveItems(List<Item> itemList) {
     return null;
   }
