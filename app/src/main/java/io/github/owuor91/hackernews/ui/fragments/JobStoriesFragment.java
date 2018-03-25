@@ -36,6 +36,10 @@ public class JobStoriesFragment extends BaseFragment implements JobStoriesPresen
   @Override public void onStart() {
     super.onStart();
     jobStoriesPresenter.setView(this);
+  }
+
+  @Override public void onResume() {
+    super.onResume();
     jobStoriesPresenter.getDbJobStories();
   }
 
@@ -54,7 +58,7 @@ public class JobStoriesFragment extends BaseFragment implements JobStoriesPresen
 
   @Override public void showJobStories(List<Story> jobStoriesList) {
     if (storiesAdapter == null) {
-      storiesAdapter = new StoriesAdapter(activityInjector());
+      storiesAdapter = new StoriesAdapter(activityInjector(), getContext());
     }
 
     if (recyclerView.getAdapter() == null) {

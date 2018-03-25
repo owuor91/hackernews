@@ -5,6 +5,7 @@ import android.text.TextUtils;
 import io.github.owuor91.domain.di.DIConstants;
 import io.github.owuor91.domain.models.Story;
 import io.github.owuor91.presentation.BasePresenter;
+import io.github.owuor91.presentation.R;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -42,16 +43,38 @@ public class StoriesViewHolderPresenter implements BasePresenter {
     view.setTitle(story.getTitle());
 
     if (!TextUtils.isEmpty(story.getText())) {
-      view.setText(story.getText());
+      if (story.getText().length() > 160) {
+        view.setText(String.format("%s%s", story.getText().substring(0, 159), context.getString(R.string.ellipsis)));
+        view.showReadMoreLink();
+      } else {
+        view.setText(story.getText());
+        view.hideReadMoreLink();
+      }
+    } else {
+      view.hideStoryTextView();
+      view.hideReadMoreLink();
     }
 
-    if (!TextUtils.isEmpty(story.getUrl())) view.setUrl(story.getUrl());
+    if (!TextUtils.isEmpty(story.getUrl())) {
+      view.setUrl(story.getUrl());
+    } else {
+      view.hideUrlView();
+    }
 
     view.setScore(story.getScore());
   }
 
   @Override public void dispose() {
 
+  }
+
+  public void onClickLink() {
+    storiesAdapterPresenter.onStoryClick(position);
+  }
+
+  public void onClickReadMore() {
+    view.setText(storiesAdapterPresenter.getStoryAt(position).getText());
+    view.hideReadMoreLink();
   }
 
   public interface View extends BasePresenter.View {
@@ -61,8 +84,16 @@ public class StoriesViewHolderPresenter implements BasePresenter {
 
     void setText(String text);
 
+    void hideStoryTextView();
+
     void setScore(int score);
 
     void setUrl(String url);
+
+    void hideUrlView();
+
+    void showReadMoreLink();
+
+    void hideReadMoreLink();
   }
 }

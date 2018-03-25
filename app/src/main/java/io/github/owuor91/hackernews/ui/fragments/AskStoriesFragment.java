@@ -35,7 +35,11 @@ public class AskStoriesFragment extends BaseFragment implements AskStoriesPresen
   @Override public void onStart() {
     super.onStart();
     askStoriesPresenter.setView(this);
-    askStoriesPresenter.getDbAskStories(); //getAskStories();
+  }
+
+  @Override public void onResume() {
+    super.onResume();
+    askStoriesPresenter.getDbAskStories();
   }
 
   @Override public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -53,7 +57,7 @@ public class AskStoriesFragment extends BaseFragment implements AskStoriesPresen
 
   @Override public void showAskStories(List<Story> askStoriesList) {
     if (storiesAdapter == null) {
-      storiesAdapter = new StoriesAdapter(activityInjector());
+      storiesAdapter = new StoriesAdapter(activityInjector(), getContext());
     }
 
     if (recyclerView.getAdapter() == null) {

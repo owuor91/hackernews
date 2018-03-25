@@ -35,7 +35,11 @@ public class ShowStoriesFragment extends BaseFragment implements ShowStoriesPres
   @Override public void onStart() {
     super.onStart();
     showStoriesPresenter.setView(this);
-    showStoriesPresenter.getDbShowStories();//getShowStories();
+  }
+
+  @Override public void onResume() {
+    super.onResume();
+    showStoriesPresenter.getDbShowStories();
   }
 
   @Override public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -53,7 +57,7 @@ public class ShowStoriesFragment extends BaseFragment implements ShowStoriesPres
 
   @Override public void showShowStories(List<Story> showStoriesList) {
     if (storiesAdapter == null) {
-      storiesAdapter = new StoriesAdapter(activityInjector());
+      storiesAdapter = new StoriesAdapter(activityInjector(), getContext());
     }
 
     if (recyclerView.getAdapter() == null) {

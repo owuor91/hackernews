@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
     >
+
+  <ImageView
+      android:id="@+id/storyListItemImgAvatar"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginLeft="@dimen/defaultMargin"
+      android:layout_marginTop="@dimen/defaultMargin"
+      android:src="@drawable/ic_account_circle_blue_200_48dp"
+      />
+
   <LinearLayout
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
@@ -11,6 +20,7 @@
       android:layout_marginLeft="@dimen/defaultMargin"
       android:layout_marginRight="@dimen/defaultMargin"
       android:layout_marginTop="@dimen/defaultMargin"
+      android:layout_toRightOf="@id/storyListItemImgAvatar"
       android:orientation="vertical"
       >
 
@@ -19,6 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@android:color/black"
+        android:textSize="@dimen/smallText"
         />
 
     <TextView
@@ -26,25 +37,51 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@android:color/black"
+        fontPath="fonts/GothamRoundedBold.ttf"
         />
     <TextView
         android:id="@+id/storyListItemTvText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@android:color/black"
+        android:textColorLink="@android:color/holo_blue_light"
         />
     <TextView
         android:id="@+id/storyListItemTvUrl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/black"
+        android:textColor="@android:color/holo_blue_light"
+        android:textSize="@dimen/smallText"
         />
-    <TextView
-        android:id="@+id/storyListItemTvScore"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/black"
-        />
+        android:orientation="horizontal"
+        >
+      <TextView
+          android:id="@+id/storyListItemTvScore"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:textColor="@android:color/black"
+          android:textSize="@dimen/smallText"
+          />
+
+      <View
+          android:layout_width="@dimen/zeroDp"
+          android:layout_height="@dimen/zeroDp"
+          android:layout_weight="1"
+          />
+
+      <TextView
+          android:id="@+id/storyListItemTvReadMore"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/readMore"
+          android:textColor="@android:color/holo_blue_light"
+          android:textSize="@dimen/smallText"
+          android:visibility="gone"
+          />
+    </LinearLayout>
 
   </LinearLayout>
 
@@ -54,4 +91,4 @@
       android:background="@android:color/black"
       />
 
-</LinearLayout>
+</RelativeLayout>

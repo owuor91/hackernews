@@ -35,7 +35,11 @@ public class TopStoriesFragment extends BaseFragment implements TopStoriesPresen
   @Override public void onStart() {
     super.onStart();
     topStoriesPresenter.setView(this);
-    topStoriesPresenter.getDbTopStories();//getTopStories();
+  }
+
+  @Override public void onResume() {
+    super.onResume();
+    topStoriesPresenter.getDbTopStories();
   }
 
   @Override public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -53,7 +57,7 @@ public class TopStoriesFragment extends BaseFragment implements TopStoriesPresen
 
   @Override public void showTopStories(List<Story> topStoriesList) {
     if (storiesAdapter == null) {
-      storiesAdapter = new StoriesAdapter(activityInjector());
+      storiesAdapter = new StoriesAdapter(activityInjector(), getContext());
     }
 
     if (recyclerView.getAdapter() == null) {

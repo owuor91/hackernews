@@ -4,4 +4,6 @@
   <dimen name="defaultMargin">16dp</dimen>
   <dimen name="smallMargin">8dp</dimen>
   <dimen name="separatorHeight">0.5dp</dimen>
+  <dimen name="zeroDp">0dp</dimen>
+  <dimen name="smallText">12sp</dimen>
 </resources>

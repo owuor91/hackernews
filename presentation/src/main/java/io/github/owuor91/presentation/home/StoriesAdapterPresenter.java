@@ -54,10 +54,15 @@ public class StoriesAdapterPresenter implements BasePresenter {
   }
 
   @Override public void dispose() {
+  }
 
+  public void onStoryClick(int position) {
+    view.openLink(stories.get(position).getUrl());
   }
 
   public interface View extends BasePresenter.View {
     void notifyAdapter();
+
+    void openLink(String link);
   }
 }

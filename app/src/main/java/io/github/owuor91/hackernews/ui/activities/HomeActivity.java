@@ -38,6 +38,7 @@ public class HomeActivity extends BaseActivity implements HomePresenter.View {
     setSupportActionBar(toolbar);
     getSupportActionBar().setDisplayShowTitleEnabled(false);
     setToolbarTitleText(getString(R.string.topStories));
+
     getSupportFragmentManager().beginTransaction()
         .replace(R.id.homeActivityFramelayout, new TopStoriesFragment())
         .addToBackStack(null)
@@ -48,6 +49,9 @@ public class HomeActivity extends BaseActivity implements HomePresenter.View {
 
   @Override protected void onResume() {
     super.onResume();
+
+    bottomNavigationView.setSelectedItemId(R.id.showStories);
+    openSelectedTab(new ShowStoriesFragment(), getString(R.string.showStories));
 
     bottomNavigationView.setOnNavigationItemSelectedListener(menuItem -> {
       switch (menuItem.getItemId()) {

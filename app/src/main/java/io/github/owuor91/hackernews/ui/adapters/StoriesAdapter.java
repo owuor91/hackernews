@@ -1,5 +1,8 @@
 package io.github.owuor91.hackernews.ui.adapters;
 
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,11 +18,13 @@ public class StoriesAdapter extends BaseRecyclerViewAdapter<StoriesViewHolder> i
 
   @Inject public StoriesAdapterPresenter storiesAdapterPresenter;
   @Inject LayoutInflater layoutInflater;
+  private Context context;
 
-  public StoriesAdapter(ActivityComponent activityComponent) {
+  public StoriesAdapter(ActivityComponent activityComponent, Context context) {
     super(activityComponent);
     injector().inject(this);
     storiesAdapterPresenter.setView(this);
+    this.context = context;
   }
 
   @Override public StoriesViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -38,10 +43,15 @@ public class StoriesAdapter extends BaseRecyclerViewAdapter<StoriesViewHolder> i
   }
 
   @Override public void handleError(Throwable throwable) {
-
   }
 
   @Override public void notifyAdapter() {
     notifyDataSetChanged();
+  }
+
+  @Override public void openLink(String link) {
+    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(link));
+    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+    context.startActivity(intent);
   }
 }
