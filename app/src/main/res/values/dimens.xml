@@ -6,4 +6,7 @@
   <dimen name="separatorHeight">0.5dp</dimen>
   <dimen name="zeroDp">0dp</dimen>
   <dimen name="smallText">12sp</dimen>
+  <dimen name="tinyMargin">4dp</dimen>
+  <dimen name="tinyText">8sp</dimen>
+  <dimen name="pointsMargin">24dp</dimen>
 </resources>

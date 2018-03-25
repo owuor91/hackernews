@@ -40,7 +40,11 @@ public class StoriesViewHolderPresenter implements BasePresenter {
 
     view.setBy(story.getBy());
 
-    view.setTitle(story.getTitle());
+    if (!TextUtils.isEmpty(story.getTitle())) {
+      view.setTitle(story.getTitle());
+    } else {
+      view.hideTitleTextView();
+    }
 
     if (!TextUtils.isEmpty(story.getText())) {
       if (story.getText().length() > 160) {
@@ -61,11 +65,14 @@ public class StoriesViewHolderPresenter implements BasePresenter {
       view.hideUrlView();
     }
 
+    if (story.getKids() != null) {
+      view.setComments(story.getKids().size());
+    }
+
     view.setScore(story.getScore());
   }
 
   @Override public void dispose() {
-
   }
 
   public void onClickLink() {
@@ -77,6 +84,10 @@ public class StoriesViewHolderPresenter implements BasePresenter {
     view.hideReadMoreLink();
   }
 
+  public void onCommentClick() {
+    view.openComments(storiesAdapterPresenter.getStoryAt(position));
+  }
+
   public interface View extends BasePresenter.View {
     void setBy(String by);
 
@@ -86,7 +97,7 @@ public class StoriesViewHolderPresenter implements BasePresenter {
 
     void hideStoryTextView();
 
-    void setScore(int score);
+    void setComments(int commentsCount);
 
     void setUrl(String url);
 
@@ -95,5 +106,13 @@ public class StoriesViewHolderPresenter implements BasePresenter {
     void showReadMoreLink();
 
     void hideReadMoreLink();
+
+    void openComments(Story story);
+
+    void hideCommentsTextView();
+
+    void hideTitleTextView();
+
+    void setScore(int score);
   }
 }

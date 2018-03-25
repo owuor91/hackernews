@@ -31,6 +31,10 @@ public class StoryApiRepository implements StoryRepository {
     }).flatMapSingle(storyDbRepository::saveStory).firstOrError();
   }
 
+  @Override public Single<Story> getStoryById(int storyId) {
+    return storiesApi.getStory(storyId).map(StoryMapper::transformFromApi).firstOrError();
+  }
+
   @Override public Single<Story> saveStory(Story story) {
     return Single.error(new OperationImpossibleException());
   }

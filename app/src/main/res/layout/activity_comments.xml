@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="io.github.owuor91.hackernews.ui.activities.CommentsActivity"
+    >
+
+
+  <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      >
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/commentsActivityAppBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        >
+
+      <android.support.v7.widget.Toolbar
+          android:id="@+id/commentsActivityToolbar"
+          android:layout_width="match_parent"
+          android:layout_height="?attr/actionBarSize"
+          android:background="?attr/colorPrimary"
+          app:popupTheme="@style/AppTheme.PopupOverlay"
+          >
+        <TextView
+            android:id="@+id/commentsActivityTvToolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/comments"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/toolbarTitleTextSize"
+            />
+      </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/commentsActivityAppBar"
+        >
+      <RelativeLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          >
+
+        <LinearLayout
+            android:id="@+id/commentsActivityLlStory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/defaultMargin"
+            android:layout_marginLeft="@dimen/defaultMargin"
+            android:layout_marginRight="@dimen/defaultMargin"
+            android:layout_marginTop="@dimen/defaultMargin"
+            android:orientation="vertical"
+            >
+
+          <TextView
+              android:id="@+id/commentsActivityTvBy"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:textColor="@android:color/black"
+              android:textSize="@dimen/smallText"
+              />
+
+          <TextView
+              android:id="@+id/commentsActivityTvTitle"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:textColor="@android:color/black"
+              fontPath="fonts/GothamRoundedBold.ttf"
+              />
+          <TextView
+              android:id="@+id/commentsActivityTvText"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:textColor="@android:color/black"
+              android:textColorLink="@android:color/holo_blue_light"
+              />
+          <TextView
+              android:id="@+id/commentsActivityTvUrl"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:textColor="@android:color/holo_blue_light"
+              android:textSize="@dimen/smallText"
+              />
+
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/commentsActivityRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/commentsActivityLlStory"
+            />
+
+      </RelativeLayout>
+
+
+    </ScrollView>
+
+
+    <ProgressBar
+        android:id="@+id/commentsActivityProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        />
+  </RelativeLayout>
+
+
+</android.support.design.widget.CoordinatorLayout>

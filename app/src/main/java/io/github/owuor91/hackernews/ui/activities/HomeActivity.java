@@ -8,11 +8,11 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import butterknife.BindView;
 import io.github.owuor91.hackernews.R;
-import io.github.owuor91.hackernews.ui.BottomNavUtil;
 import io.github.owuor91.hackernews.ui.fragments.AskStoriesFragment;
 import io.github.owuor91.hackernews.ui.fragments.JobStoriesFragment;
 import io.github.owuor91.hackernews.ui.fragments.ShowStoriesFragment;
 import io.github.owuor91.hackernews.ui.fragments.TopStoriesFragment;
+import io.github.owuor91.hackernews.ui.viewutils.BottomNavUtil;
 import io.github.owuor91.presentation.home.HomePresenter;
 import javax.inject.Inject;
 

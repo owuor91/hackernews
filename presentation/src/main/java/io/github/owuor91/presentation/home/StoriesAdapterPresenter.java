@@ -2,6 +2,7 @@ package io.github.owuor91.presentation.home;
 
 import io.github.owuor91.domain.models.Story;
 import io.github.owuor91.presentation.BasePresenter;
+import io.github.owuor91.presentation.comments.CommentsPresenter;
 import java.util.List;
 import javax.inject.Inject;
 
@@ -16,6 +17,7 @@ public class StoriesAdapterPresenter implements BasePresenter {
   private TopStoriesPresenter topStoriesPresenter;
   private AskStoriesPresenter askStoriesPresenter;
   private ShowStoriesPresenter showStoriesPresenter;
+  private CommentsPresenter commentsPresenter;
 
   @Inject public StoriesAdapterPresenter() {
   }
@@ -34,6 +36,10 @@ public class StoriesAdapterPresenter implements BasePresenter {
 
   public void setShowStoriesPresenter(ShowStoriesPresenter showStoriesPresenter) {
     this.showStoriesPresenter = showStoriesPresenter;
+  }
+
+  public void setCommentsPresenter(CommentsPresenter commentsPresenter) {
+    this.commentsPresenter = commentsPresenter;
   }
 
   public void setView(View view) {

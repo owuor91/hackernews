@@ -13,6 +13,8 @@ public class Constants {
 
   public static final String CUSTOM_FONT_ASSET_PATH = "fonts/GothamRoundedBook.ttf";
   public static final String TOOLBAR_TITLE_TEXT = "TOOLBAR_TITLE_TEXT";
+  public static final String COMMENTS = "comments";
+  public static final String STORY_ID = "STORY_ID";
   public static String COMMA = ",";
   public static String EMPTY_STRING = "";
 }

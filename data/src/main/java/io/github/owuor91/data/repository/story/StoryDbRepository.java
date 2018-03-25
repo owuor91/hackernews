@@ -39,4 +39,8 @@ public class StoryDbRepository implements StoryRepository {
   @Override public Single<Integer> deleteStories() {
     return storyDao.getAllStories().map(storyDao::deleteStories);
   }
+
+  @Override public Single<Story> getStoryById(int storyId) {
+    return Single.error(new OperationImpossibleException());
+  }
 }

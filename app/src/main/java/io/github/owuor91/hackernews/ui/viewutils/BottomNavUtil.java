@@ -1,4 +1,4 @@
-package io.github.owuor91.hackernews.ui;
+package io.github.owuor91.hackernews.ui.viewutils;
 
 import android.annotation.SuppressLint;
 import android.support.design.internal.BottomNavigationItemView;

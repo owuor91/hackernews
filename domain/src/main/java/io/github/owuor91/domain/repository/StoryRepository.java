@@ -12,6 +12,8 @@ import java.util.List;
 public interface StoryRepository {
   Single<Story> getStory(Item item);
 
+  Single<Story> getStoryById(int storyId);
+
   Single<Story> saveStory(Story story);
 
   Single<List<Story>> getStoriesList(String itemType);
