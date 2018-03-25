@@ -26,6 +26,11 @@
         android:label="@string/title_activity_comments"
         android:theme="@style/AppTheme.NoActionBar">
     </activity>
+    <activity
+        android:name=".ui.activities.UserActivity"
+        android:label="@string/title_activity_user"
+        android:theme="@style/AppTheme.NoActionBar">
+    </activity>
   </application>
 
 </manifest>

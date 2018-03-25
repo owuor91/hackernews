@@ -6,6 +6,7 @@ import io.github.owuor91.hackernews.di.fragment.FragmentComponent;
 import io.github.owuor91.hackernews.ui.activities.BaseActivity;
 import io.github.owuor91.hackernews.ui.activities.CommentsActivity;
 import io.github.owuor91.hackernews.ui.activities.HomeActivity;
+import io.github.owuor91.hackernews.ui.activities.UserActivity;
 
 /**
  * Created by johnowuor on 20/03/2018.
@@ -21,6 +22,8 @@ import io.github.owuor91.hackernews.ui.activities.HomeActivity;
   void baseInject(BaseActivity baseActivity);
 
   void inject(CommentsActivity commentsActivity);
+
+  void inject(UserActivity userActivity);
 
   @Subcomponent.Builder interface Builder{
     Builder activityModule(ActivityModule activityModule);

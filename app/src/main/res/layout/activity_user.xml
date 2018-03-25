@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="io.github.owuor91.hackernews.ui.activities.UserActivity"
+    >
+
+  <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      >
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/userActivityAppbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        >
+
+      <android.support.v7.widget.Toolbar
+          android:id="@+id/userActivityToolbar"
+          android:layout_width="match_parent"
+          android:layout_height="?attr/actionBarSize"
+          android:background="?attr/colorPrimary"
+          app:popupTheme="@style/AppTheme.PopupOverlay"
+          >
+        <TextView
+            android:id="@+id/userActivityTvToolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/toolbarTitleTextSize"
+            />
+      </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/userActivityAppbar"
+        android:layout_margin="@dimen/defaultMargin"
+        android:orientation="vertical"
+        >
+
+      <RelativeLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginBottom="@dimen/defaultMargin"
+          >
+        <ImageView
+            android:id="@+id/userActivityImgDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/defaultMargin"
+            android:src="@drawable/ic_face_black_48dp"
+            />
+
+        <TextView
+            android:id="@+id/userActivityAboutLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/tinyMargin"
+            android:layout_toRightOf="@id/userActivityImgDescription"
+            android:text="@string/description"
+            />
+
+        <TextView
+            android:id="@+id/userActivityTvAbout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/userActivityAboutLabel"
+            android:layout_toRightOf="@id/userActivityImgDescription"
+            android:text="@string/noDescriptionAvailable"
+            android:textColor="@android:color/black"
+            android:textColorLink="@android:color/holo_blue_light"
+            />
+      </RelativeLayout>
+
+      <RelativeLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginBottom="@dimen/defaultMargin"
+          >
+        <ImageView
+            android:id="@+id/userActivityImgKarma"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/defaultMargin"
+            android:src="@drawable/ic_stars_black_48dp"
+            />
+
+        <TextView
+            android:id="@+id/userActivityKarmaLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/tinyMargin"
+            android:layout_toRightOf="@id/userActivityImgKarma"
+            android:text="@string/karma"
+            />
+
+        <TextView
+            android:id="@+id/userActivityTvKarma"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/userActivityKarmaLabel"
+            android:layout_toRightOf="@id/userActivityImgKarma"
+            android:textColor="@android:color/black"
+            />
+      </RelativeLayout>
+
+      <RelativeLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginBottom="@dimen/defaultMargin"
+          >
+        <ImageView
+            android:id="@+id/userActivityImgCreated"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/defaultMargin"
+            android:src="@drawable/ic_watch_black_48dp"
+            />
+
+        <TextView
+            android:id="@+id/userActivityCreatedLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/tinyMargin"
+            android:layout_toRightOf="@id/userActivityImgCreated"
+            android:text="@string/memberSince"
+            />
+
+        <TextView
+            android:id="@+id/userActivityTvCreated"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/userActivityCreatedLabel"
+            android:layout_toRightOf="@id/userActivityImgCreated"
+            android:textColor="@android:color/black"
+            />
+      </RelativeLayout>
+
+
+      <RelativeLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginBottom="@dimen/defaultMargin"
+          >
+        <ImageView
+            android:id="@+id/userActivityImgSubmitted"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/defaultMargin"
+            android:src="@drawable/ic_speaker_notes_black_48dp"
+            />
+
+        <TextView
+            android:id="@+id/userActivitySubmittedLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/tinyMargin"
+            android:layout_toRightOf="@id/userActivityImgSubmitted"
+            android:text="@string/submittedLbl"
+            />
+
+        <TextView
+            android:id="@+id/userActivityTvSubmitted"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/userActivitySubmittedLabel"
+            android:layout_toRightOf="@id/userActivityImgSubmitted"
+            android:textColor="@android:color/black"
+            />
+      </RelativeLayout>
+
+    </LinearLayout>
+    <ProgressBar
+        android:id="@+id/userActivityProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        />
+  </RelativeLayout>
+
+
+</android.support.design.widget.CoordinatorLayout>

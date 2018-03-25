@@ -13,4 +13,12 @@
   <string name="comments">Comments</string>
   <string name="points">points</string>
   <string name="defaultCommentCount">0</string>
+  <string name="title_activity_user">UserActivity</string>
+  <string name="submitted">Submitted</string>
+  <string name="items">items</string>
+  <string name="description">Description:</string>
+  <string name="noDescriptionAvailable">No description available</string>
+  <string name="karma">Karma:</string>
+  <string name="memberSince">Member Since:</string>
+  <string name="submittedLbl">Submitted:</string>
 </resources>

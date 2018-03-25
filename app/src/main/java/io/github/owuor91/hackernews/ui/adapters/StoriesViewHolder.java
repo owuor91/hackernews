@@ -3,6 +3,7 @@ package io.github.owuor91.hackernews.ui.adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -12,6 +13,7 @@ import io.github.owuor91.domain.models.Story;
 import io.github.owuor91.hackernews.R;
 import io.github.owuor91.hackernews.di.adapter.AdapterComponent;
 import io.github.owuor91.hackernews.ui.activities.CommentsActivity;
+import io.github.owuor91.hackernews.ui.activities.UserActivity;
 import io.github.owuor91.hackernews.ui.viewutils.TextLinkUtil;
 import io.github.owuor91.presentation.home.StoriesViewHolderPresenter;
 import javax.inject.Inject;
@@ -35,6 +37,7 @@ public class StoriesViewHolder extends BaseViewHolder implements StoriesViewHold
   @BindView(R.id.storyListItemTvComments) TextView tvComments;
   @BindView(R.id.storyListItemTvReadMore) TextView tvReadMore;
   @BindView(R.id.storyListItemTvScore) TextView tvScore;
+  @BindView(R.id.storyListItemImgAvatar) ImageView imgAvatar;
 
   public StoriesViewHolder(View itemView, AdapterComponent adapterComponent) {
     super(itemView);
@@ -111,5 +114,16 @@ public class StoriesViewHolder extends BaseViewHolder implements StoriesViewHold
 
   @Override public void hideTitleTextView() {
     tvTitle.setVisibility(View.GONE);
+  }
+
+  @OnClick({ R.id.storyListItemTvBy, R.id.storyListItemImgAvatar }) public void onClickByTv() {
+    storiesViewHolderPresenter.onClickTvBy();
+  }
+
+  @Override public void openUser(String userId) {
+    Intent intent = new Intent(context, UserActivity.class);
+    intent.putExtra(Constants.USER_ID, userId);
+    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+    context.startActivity(intent);
   }
 }

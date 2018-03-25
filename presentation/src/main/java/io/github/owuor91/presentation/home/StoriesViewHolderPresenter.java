@@ -88,6 +88,10 @@ public class StoriesViewHolderPresenter implements BasePresenter {
     view.openComments(storiesAdapterPresenter.getStoryAt(position));
   }
 
+  public void onClickTvBy() {
+    view.openUser(storiesAdapterPresenter.getStoryAt(position).getBy());
+  }
+
   public interface View extends BasePresenter.View {
     void setBy(String by);
 
@@ -114,5 +118,7 @@ public class StoriesViewHolderPresenter implements BasePresenter {
     void hideTitleTextView();
 
     void setScore(int score);
+
+    void openUser(String userId);
   }
 }

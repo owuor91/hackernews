@@ -15,6 +15,7 @@ public class Constants {
   public static final String TOOLBAR_TITLE_TEXT = "TOOLBAR_TITLE_TEXT";
   public static final String COMMENTS = "comments";
   public static final String STORY_ID = "STORY_ID";
+  public static final String USER_ID = "USER_ID";
   public static String COMMA = ",";
   public static String EMPTY_STRING = "";
 }

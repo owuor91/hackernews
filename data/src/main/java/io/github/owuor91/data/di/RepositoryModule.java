@@ -4,15 +4,18 @@ import dagger.Module;
 import dagger.Provides;
 import io.github.owuor91.data.api.ItemsApi;
 import io.github.owuor91.data.api.StoriesApi;
+import io.github.owuor91.data.api.UserApi;
 import io.github.owuor91.data.repository.item.ItemApiRepository;
 import io.github.owuor91.data.repository.item.ItemDbRepository;
 import io.github.owuor91.data.repository.story.StoryApiRepository;
 import io.github.owuor91.data.repository.story.StoryDbRepository;
+import io.github.owuor91.data.repository.user.UserApiRepository;
 import io.github.owuor91.data.sql.dao.ItemDao;
 import io.github.owuor91.data.sql.dao.StoryDao;
 import io.github.owuor91.domain.di.DIConstants;
 import io.github.owuor91.domain.repository.ItemRepository;
 import io.github.owuor91.domain.repository.StoryRepository;
+import io.github.owuor91.domain.repository.UserRepository;
 import javax.inject.Named;
 
 /**
@@ -36,5 +39,9 @@ import javax.inject.Named;
 
   @Provides @Named(DIConstants.DB) StoryRepository provideStoryDbRepository(StoryDao storyDao) {
     return new StoryDbRepository(storyDao);
+  }
+
+  @Provides @Named(DIConstants.API) UserRepository provideUserApiRepository(UserApi userApi) {
+    return new UserApiRepository(userApi);
   }
 }
