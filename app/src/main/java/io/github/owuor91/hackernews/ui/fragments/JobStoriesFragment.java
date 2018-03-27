@@ -9,7 +9,6 @@ import android.widget.ProgressBar;
 import butterknife.BindView;
 import io.github.owuor91.domain.models.Story;
 import io.github.owuor91.hackernews.R;
-import io.github.owuor91.hackernews.ui.adapters.StoriesAdapter;
 import io.github.owuor91.presentation.home.JobStoriesPresenter;
 import java.util.List;
 import javax.inject.Inject;
@@ -19,7 +18,6 @@ public class JobStoriesFragment extends BaseFragment implements JobStoriesPresen
   @BindView(R.id.jobStoriesFragmentRecyclerView) RecyclerView recyclerView;
   @BindView(R.id.jobStoriesFragmentProgressBar) ProgressBar progressBar;
   @Inject JobStoriesPresenter jobStoriesPresenter;
-  private StoriesAdapter storiesAdapter;
 
   public JobStoriesFragment() {
   }
@@ -40,7 +38,7 @@ public class JobStoriesFragment extends BaseFragment implements JobStoriesPresen
 
   @Override public void onResume() {
     super.onResume();
-    jobStoriesPresenter.getDbJobStories();
+    jobStoriesPresenter.getJobStories();
   }
 
   @Override public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -57,13 +55,7 @@ public class JobStoriesFragment extends BaseFragment implements JobStoriesPresen
   }
 
   @Override public void showJobStories(List<Story> jobStoriesList) {
-    if (storiesAdapter == null) {
-      storiesAdapter = new StoriesAdapter(activityInjector(), getContext());
-    }
-
-    if (recyclerView.getAdapter() == null) {
-      recyclerView.setAdapter(storiesAdapter);
-    }
+    setupStoriesAdapter(recyclerView);
 
     storiesAdapter.storiesAdapterPresenter.setJobStoriesPresenter(jobStoriesPresenter);
     storiesAdapter.storiesAdapterPresenter.onDataChange(jobStoriesList);

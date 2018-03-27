@@ -12,13 +12,13 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.powermock.modules.junit4.PowerMockRunner;
+import org.mockito.junit.MockitoJUnitRunner;
 
 /**
  * Created by johnowuor on 26/03/2018.
  */
 
-@RunWith(PowerMockRunner.class) public class ItemApiRepositoryTest {
+@RunWith(MockitoJUnitRunner.class) public class ItemApiRepositoryTest {
   @Mock ItemsApi itemsApi;
   @Mock ItemRepository itemDbRepository;
 
@@ -31,7 +31,7 @@ import org.powermock.modules.junit4.PowerMockRunner;
     topStoryItems.add(328899);
     topStoryItems.add(465782);
 
-    Mockito.when(itemsApi.getTopStories()).thenReturn(Flowable.just(topStoryItems));
+    Mockito.when(itemsApi.getTopStoryItems()).thenReturn(Flowable.just(topStoryItems));
 
     ItemApiRepository itemApiRepository = new ItemApiRepository(itemsApi, itemDbRepository);
     TestObserver<List<Item>> testObserver = itemApiRepository.getTopItems().test();

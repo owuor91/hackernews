@@ -3,7 +3,6 @@ package io.github.owuor91.presentation.home;
 import io.github.owuor91.data.util.RxUtil;
 import io.github.owuor91.domain.Constants;
 import io.github.owuor91.domain.di.DIConstants;
-import io.github.owuor91.domain.models.Item;
 import io.github.owuor91.domain.models.Story;
 import io.github.owuor91.domain.repository.ItemRepository;
 import io.github.owuor91.domain.repository.StoryRepository;
@@ -26,17 +25,14 @@ public class TopStoriesPresenter implements BasePresenter {
 
   private CompositeDisposable compositeDisposable;
   private ItemRepository itemApiRepository;
-  private ItemRepository itemDbRepository;
-  private StoryRepository storyApiRepository;
   private StoryRepository storyDbRepository;
+  private StoryRepository storyApiRepository;
   private View view;
 
   @Inject public TopStoriesPresenter(@Named(DIConstants.API) ItemRepository itemApiRepository,
-      @Named(DIConstants.DB) ItemRepository itemDbRepository,
       @Named(DIConstants.API) StoryRepository storyApiRepository,
       @Named(DIConstants.DB) StoryRepository storyDbRepository) {
     this.itemApiRepository = itemApiRepository;
-    this.itemDbRepository = itemDbRepository;
     this.storyApiRepository = storyApiRepository;
     this.storyDbRepository = storyDbRepository;
   }
@@ -49,41 +45,29 @@ public class TopStoriesPresenter implements BasePresenter {
     compositeDisposable = RxUtil.initDisposables(compositeDisposable);
     view.showProgress();
 
-    Disposable disposable = getTopItems()
-        .subscribeOn(Schedulers.io())
+    Disposable disposable =
+        storyDbRepository.getStoriesList(Constants.TOP_STORY)
+            .subscribeOn(Schedulers.io())
+            .flatMap(stories -> {
+              if (stories.isEmpty()) {
+                return getApiTopStories();
+              } else {
+                return Single.just(stories);
+              }
+            })
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSuccess(itemList -> view.hideProgress())
+            .doOnError(throwable -> view.hideProgress())
+            .subscribe(view::showTopStories, view::handleError);
+
+    compositeDisposable.add(disposable);
+  }
+
+  private Single<List<Story>> getApiTopStories() {
+    return itemApiRepository.getTopItems()
         .flatMapPublisher(Flowable::fromIterable)
         .flatMapSingle(item -> storyApiRepository.getStory(item))
-        .toList()
-        .observeOn(AndroidSchedulers.mainThread())
-        .doOnSuccess(itemList -> view.hideProgress())
-        .doOnError(throwable -> view.hideProgress())
-        .subscribe(view::showTopStories, view::handleError);
-
-    compositeDisposable.add(disposable);
-  }
-
-  private Single<List<Item>> getTopItems() {
-    return itemDbRepository.getTopItems().flatMap(itemList -> {
-      if (itemList.isEmpty()) {
-        return itemApiRepository.getTopItems();
-      } else {
-        return Single.just(itemList);
-      }
-    });
-  }
-
-  public void getDbTopStories() {
-    compositeDisposable = RxUtil.initDisposables(compositeDisposable);
-    view.showProgress();
-
-    Disposable disposable = storyDbRepository.getStoriesList(Constants.TOP_STORY)
-        .subscribeOn(Schedulers.io())
-        .observeOn(AndroidSchedulers.mainThread())
-        .doOnSuccess(stories -> view.hideProgress())
-        .doOnError(throwable -> view.hideProgress())
-        .subscribe(view::showTopStories, view::handleError);
-
-    compositeDisposable.add(disposable);
+        .toList();
   }
 
   @Override public void dispose() {

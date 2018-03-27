@@ -50,8 +50,8 @@ public class HomeActivity extends BaseActivity implements HomePresenter.View {
   @Override protected void onResume() {
     super.onResume();
 
-    bottomNavigationView.setSelectedItemId(R.id.showStories);
-    openSelectedTab(new ShowStoriesFragment(), getString(R.string.showStories));
+    bottomNavigationView.setSelectedItemId(R.id.topStories);
+    openSelectedTab(new TopStoriesFragment(), getString(R.string.topStories));
 
     bottomNavigationView.setOnNavigationItemSelectedListener(menuItem -> {
       switch (menuItem.getItemId()) {
@@ -81,6 +81,11 @@ public class HomeActivity extends BaseActivity implements HomePresenter.View {
 
   private void setToolbarTitleText(String toolbarTitleText) {
     tvToolbar.setText(toolbarTitleText);
+  }
+
+  @Override protected void onDestroy() {
+    super.onDestroy();
+    homePresenter.deleteDbStories();
   }
 
   @Override protected void dispose() {

@@ -9,7 +9,6 @@ import android.widget.ProgressBar;
 import butterknife.BindView;
 import io.github.owuor91.domain.models.Story;
 import io.github.owuor91.hackernews.R;
-import io.github.owuor91.hackernews.ui.adapters.StoriesAdapter;
 import io.github.owuor91.presentation.home.ShowStoriesPresenter;
 import java.util.List;
 import javax.inject.Inject;
@@ -18,7 +17,6 @@ public class ShowStoriesFragment extends BaseFragment implements ShowStoriesPres
   @BindView(R.id.showStoriesFragmentRecyclerView) RecyclerView recyclerView;
   @BindView(R.id.showStoriesFragmentProgressBar) ProgressBar progressBar;
   @Inject ShowStoriesPresenter showStoriesPresenter;
-  private StoriesAdapter storiesAdapter;
 
   public ShowStoriesFragment() {
   }
@@ -39,7 +37,7 @@ public class ShowStoriesFragment extends BaseFragment implements ShowStoriesPres
 
   @Override public void onResume() {
     super.onResume();
-    showStoriesPresenter.getDbShowStories();
+    showStoriesPresenter.getShowStories();
   }
 
   @Override public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -56,13 +54,7 @@ public class ShowStoriesFragment extends BaseFragment implements ShowStoriesPres
   }
 
   @Override public void showShowStories(List<Story> showStoriesList) {
-    if (storiesAdapter == null) {
-      storiesAdapter = new StoriesAdapter(activityInjector(), getContext());
-    }
-
-    if (recyclerView.getAdapter() == null) {
-      recyclerView.setAdapter(storiesAdapter);
-    }
+    setupStoriesAdapter(recyclerView);
 
     storiesAdapter.storiesAdapterPresenter.setShowStoriesPresenter(showStoriesPresenter);
     storiesAdapter.storiesAdapterPresenter.onDataChange(showStoriesList);

@@ -28,6 +28,10 @@ android {
       buildConfigField('String', 'BASE_URL', '"https://hacker-news.firebaseio.com/v0/"')
     }
   }
+
+  testOptions {
+    unitTests.returnDefaultValues = true
+  }
 }
 
 dependencies {
@@ -49,11 +53,7 @@ dependencies {
   api 'android.arch.persistence.room:rxjava2:1.0.0'
   annotationProcessor "android.arch.persistence.room:compiler:1.0.0"
 
-  testCompile 'org.powermock:powermock-module-junit4:1.6.2'
-  testCompile 'org.powermock:powermock-module-junit4-rule:1.6.2'
-  testCompile 'org.powermock:powermock-api-mockito:1.6.2'
-  testCompile 'org.powermock:powermock-classloading-xstream:1.6.2'
-  testCompile 'org.robolectric:robolectric:3.4.2'
+  testCompile "org.mockito:mockito-core:2.+"
 
 
   api project(':domain')

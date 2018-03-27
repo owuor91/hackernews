@@ -26,33 +26,37 @@ public class ItemApiRepository implements ItemRepository {
   }
 
   @Override public Single<List<Item>> getTopItems() {
-    return itemsApi.getTopStories()
-        .flatMap(Flowable::fromIterable)
+    return itemsApi.getTopStoryItems()
+        .flatMap(Flowable::fromIterable).take(30)
         .map(integer -> ItemMapper.makeItemApiModel(integer, Constants.TOP_STORY))
-        .map(ItemMapper::transformFromApi)
-        .toList()
-        .flatMap(itemDbRepository::saveItems);
+        .map(ItemMapper::transformFromApi).toList();
   }
 
   @Override public Single<List<Item>> getShowItems() {
-    return itemsApi.getShowStories()
+    return itemsApi.getShowStoryItems()
         .flatMap(Flowable::fromIterable)
+        .take(30)
         .map(integer -> ItemMapper.makeItemApiModel(integer, Constants.SHOW_STORY))
-        .map(ItemMapper::transformFromApi).toList().flatMap(itemDbRepository::saveItems);
+        .map(ItemMapper::transformFromApi)
+        .toList();
   }
 
   @Override public Single<List<Item>> getJobItems() {
-    return itemsApi.getJobStories()
+    return itemsApi.getJobStoryItems()
         .flatMap(Flowable::fromIterable)
+        .take(30)
         .map(integer -> ItemMapper.makeItemApiModel(integer, Constants.JOB_STORY))
-        .map(ItemMapper::transformFromApi).toList().flatMap(itemDbRepository::saveItems);
+        .map(ItemMapper::transformFromApi)
+        .toList();
   }
 
   @Override public Single<List<Item>> getAskItems() {
-    return itemsApi.getAskStories()
+    return itemsApi.getAskStoryItems()
         .flatMap(Flowable::fromIterable)
+        .take(30)
         .map(integer -> ItemMapper.makeItemApiModel(integer, Constants.ASK_STORY))
-        .map(ItemMapper::transformFromApi).toList().flatMap(itemDbRepository::saveItems);
+        .map(ItemMapper::transformFromApi)
+        .toList();
   }
 
   @Override public Single<List<Item>> saveItems(List<Item> itemList) {

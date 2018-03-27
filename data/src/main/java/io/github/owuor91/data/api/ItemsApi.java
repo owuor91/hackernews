@@ -9,11 +9,11 @@ import retrofit2.http.GET;
  */
 
 public interface ItemsApi {
-  @GET("topstories.json") Flowable<List<Integer>> getTopStories();
+  @GET("topstories.json") Flowable<List<Integer>> getTopStoryItems();
 
-  @GET("showstories.json") Flowable<List<Integer>> getShowStories();
+  @GET("showstories.json") Flowable<List<Integer>> getShowStoryItems();
 
-  @GET("jobstories.json") Flowable<List<Integer>> getJobStories();
+  @GET("jobstories.json") Flowable<List<Integer>> getJobStoryItems();
 
-  @GET("askstories.json") Flowable<List<Integer>> getAskStories();
+  @GET("askstories.json") Flowable<List<Integer>> getAskStoryItems();
 }

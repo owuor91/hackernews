@@ -11,13 +11,13 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.powermock.modules.junit4.PowerMockRunner;
+import org.mockito.junit.MockitoJUnitRunner;
 
 /**
  * Created by johnowuor on 26/03/2018.
  */
 
-@RunWith(PowerMockRunner.class) public class StoryApiRepositoryTest {
+@RunWith(MockitoJUnitRunner.class) public class StoryApiRepositoryTest {
   @Mock StoriesApi storiesApi;
   @Mock StoryRepository storyDbRepository;
 
