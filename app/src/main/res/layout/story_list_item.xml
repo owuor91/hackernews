@@ -4,14 +4,23 @@
     android:layout_height="wrap_content"
     >
 
-  <ImageView
-      android:id="@+id/storyListItemImgAvatar"
+  <RelativeLayout
+      android:id="@+id/storyListItemRlAvatar"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginLeft="@dimen/defaultMargin"
       android:layout_marginTop="@dimen/defaultMargin"
-      android:src="@drawable/ic_account_circle_blue_200_48dp"
-      />
+      android:background="@drawable/avatar_background"
+      >
+    <TextView
+        android:id="@+id/storyListItemTvInitial"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/avatarPlaceholderTextSize"
+        />
+  </RelativeLayout>
 
   <LinearLayout
       android:layout_width="match_parent"
@@ -20,17 +29,41 @@
       android:layout_marginLeft="@dimen/defaultMargin"
       android:layout_marginRight="@dimen/defaultMargin"
       android:layout_marginTop="@dimen/defaultMargin"
-      android:layout_toRightOf="@id/storyListItemImgAvatar"
+      android:layout_toRightOf="@id/storyListItemRlAvatar"
       android:orientation="vertical"
       >
 
-    <TextView
-        android:id="@+id/storyListItemTvBy"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/greyInactiveMenu"
-        android:textSize="@dimen/smallText"
-        />
+        android:orientation="horizontal"
+        >
+      <TextView
+          android:id="@+id/storyListItemTvBy"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:textColor="@color/greyInactiveMenu"
+          android:textSize="@dimen/smallText"
+          />
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginLeft="@dimen/dateSpace"
+          android:layout_marginRight="@dimen/dateSpace"
+          android:text="\u2022"
+          android:textColor="@color/greyInactiveMenu"
+          android:textSize="@dimen/smallText"
+          />
+
+      <TextView
+          android:id="@+id/storyListItemTvTime"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:textColor="@color/greyInactiveMenu"
+          android:textSize="@dimen/smallText"
+          />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/storyListItemTvTitle"
@@ -44,13 +77,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@android:color/black"
-        android:textColorLink="@android:color/holo_blue_light"
+        android:textColorLink="@color/hackerNewsOrange"
         />
     <TextView
         android:id="@+id/storyListItemTvUrl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/holo_blue_light"
+        android:textColor="@color/hackerNewsOrange"
         android:textSize="@dimen/smallText"
         />
     <LinearLayout
@@ -64,10 +97,10 @@
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_marginRight="@dimen/pointsMargin"
-          android:drawableLeft="@drawable/ic_chat_bubble_outline_blue_18dp"
+          android:drawableLeft="@drawable/ic_chat_bubble_outline_orange_18dp"
           android:drawablePadding="@dimen/tinyMargin"
           android:text="@string/defaultCommentCount"
-          android:textColor="@android:color/holo_blue_light"
+          android:textColor="@color/hackerNewsOrange"
           android:textSize="@dimen/smallText"
           />
 
@@ -75,9 +108,9 @@
           android:id="@+id/storyListItemTvScore"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:drawableLeft="@drawable/ic_star_border_blue_18dp"
+          android:drawableLeft="@drawable/ic_star_border_orange_18dp"
           android:drawablePadding="@dimen/tinyMargin"
-          android:textColor="@android:color/holo_blue_light"
+          android:textColor="@color/hackerNewsOrange"
           android:textSize="@dimen/smallText"
           />
 
@@ -92,7 +125,7 @@
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:text="@string/readMore"
-          android:textColor="@android:color/holo_blue_light"
+          android:textColor="@color/hackerNewsOrange"
           android:textSize="@dimen/smallText"
           android:visibility="gone"
           />

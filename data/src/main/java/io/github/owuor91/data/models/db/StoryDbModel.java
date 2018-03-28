@@ -20,7 +20,7 @@ import android.arch.persistence.room.PrimaryKey;
 
   private String text;
 
-  private int time;
+  private long time;
 
   private String title;
 
@@ -99,11 +99,11 @@ import android.arch.persistence.room.PrimaryKey;
     this.text = text;
   }
 
-  public int getTime() {
+  public long getTime() {
     return time;
   }
 
-  public void setTime(int time) {
+  public void setTime(long time) {
     this.time = time;
   }
 
@@ -146,7 +146,7 @@ import android.arch.persistence.room.PrimaryKey;
     private String kids;
     private int score;
     private String text;
-    private int time;
+    private long time;
     private String title;
     private String type;
     private String url;
@@ -185,7 +185,7 @@ import android.arch.persistence.room.PrimaryKey;
       return this;
     }
 
-    public Builder withTime(int val) {
+    public Builder withTime(long val) {
       time = val;
       return this;
     }

@@ -13,9 +13,11 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
+import java.util.Collections;
 import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Named;
+import org.joda.time.DateTime;
 
 /**
  * Created by johnowuor on 22/03/2018.
@@ -54,7 +56,12 @@ public class TopStoriesPresenter implements BasePresenter {
               } else {
                 return Single.just(stories);
               }
-            })
+            }).map(stories -> {
+          Collections.sort(stories,
+              (story1, story2) -> new DateTime(story2.getTime() * Constants.MILLISECONDS_1000).compareTo(
+                  new DateTime(story1.getTime() * Constants.MILLISECONDS_1000)));
+          return stories;
+        })
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSuccess(itemList -> view.hideProgress())
             .doOnError(throwable -> view.hideProgress())

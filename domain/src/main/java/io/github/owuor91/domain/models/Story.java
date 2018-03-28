@@ -19,7 +19,7 @@ public class Story {
 
   private String text;
 
-  private int time;
+  private long time;
 
   private String title;
 
@@ -98,11 +98,11 @@ public class Story {
     this.text = text;
   }
 
-  public int getTime() {
+  public long getTime() {
     return time;
   }
 
-  public void setTime(int time) {
+  public void setTime(long time) {
     this.time = time;
   }
 
@@ -145,7 +145,7 @@ public class Story {
     private List<Integer> kids;
     private int score;
     private String text;
-    private int time;
+    private long time;
     private String title;
     private String type;
     private String url;
@@ -184,7 +184,7 @@ public class Story {
       return this;
     }
 
-    public Builder withTime(int val) {
+    public Builder withTime(long val) {
       time = val;
       return this;
     }

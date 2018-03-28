@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import butterknife.BindView;
@@ -77,6 +79,23 @@ public class HomeActivity extends BaseActivity implements HomePresenter.View {
         .replace(R.id.homeActivityFramelayout, fragment)
         .addToBackStack(null)
         .commit();
+  }
+
+  @Override public boolean onCreateOptionsMenu(Menu menu) {
+    getMenuInflater().inflate(R.menu.home_activity_menu, menu);
+    return true;
+  }
+
+  @Override public boolean onOptionsItemSelected(MenuItem item) {
+    switch (item.getItemId()) {
+      case R.id.refreshFeed:
+        homePresenter.deleteDbStories();
+        onResume();
+        return true;
+
+      default:
+        return super.onOptionsItemSelected(item);
+    }
   }
 
   private void setToolbarTitleText(String toolbarTitleText) {

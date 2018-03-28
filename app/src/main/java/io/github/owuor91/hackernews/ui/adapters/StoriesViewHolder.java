@@ -3,7 +3,7 @@ package io.github.owuor91.hackernews.ui.adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
-import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -31,13 +31,15 @@ public class StoriesViewHolder extends BaseViewHolder implements StoriesViewHold
   @Inject @Named(DIConstants.APP) Context context;
 
   @BindView(R.id.storyListItemTvBy) TextView tvBy;
+  @BindView(R.id.storyListItemTvTime) TextView tvTime;
   @BindView(R.id.storyListItemTvTitle) TextView tvTitle;
   @BindView(R.id.storyListItemTvText) TextView tvText;
   @BindView(R.id.storyListItemTvUrl) TextView tvUrl;
   @BindView(R.id.storyListItemTvComments) TextView tvComments;
   @BindView(R.id.storyListItemTvReadMore) TextView tvReadMore;
   @BindView(R.id.storyListItemTvScore) TextView tvScore;
-  @BindView(R.id.storyListItemImgAvatar) ImageView imgAvatar;
+  @BindView(R.id.storyListItemRlAvatar) RelativeLayout flAvatar;
+  @BindView(R.id.storyListItemTvInitial) TextView tvInitial;
 
   public StoriesViewHolder(View itemView, AdapterComponent adapterComponent) {
     super(itemView);
@@ -49,8 +51,16 @@ public class StoriesViewHolder extends BaseViewHolder implements StoriesViewHold
 
   }
 
+  @Override public void setInitial(String initial) {
+    tvInitial.setText(initial);
+  }
+
   @Override public void setBy(String by) {
     tvBy.setText(by);
+  }
+
+  @Override public void setElapsedTime(String elapsedTime) {
+    tvTime.setText(elapsedTime);
   }
 
   @Override public void setTitle(String title) {
@@ -116,7 +126,7 @@ public class StoriesViewHolder extends BaseViewHolder implements StoriesViewHold
     tvTitle.setVisibility(View.GONE);
   }
 
-  @OnClick({ R.id.storyListItemTvBy, R.id.storyListItemImgAvatar }) public void onClickByTv() {
+  @OnClick({ R.id.storyListItemTvBy, R.id.storyListItemRlAvatar }) public void onClickByTv() {
     storiesViewHolderPresenter.onClickTvBy();
   }
 

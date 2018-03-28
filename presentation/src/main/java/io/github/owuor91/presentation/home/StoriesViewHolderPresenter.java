@@ -4,6 +4,7 @@ import android.content.Context;
 import android.text.TextUtils;
 import io.github.owuor91.domain.di.DIConstants;
 import io.github.owuor91.domain.models.Story;
+import io.github.owuor91.domain.utils.DateTimeUtils;
 import io.github.owuor91.presentation.BasePresenter;
 import io.github.owuor91.presentation.R;
 import javax.inject.Inject;
@@ -38,7 +39,13 @@ public class StoriesViewHolderPresenter implements BasePresenter {
   public void bind() {
     Story story = storiesAdapterPresenter.getStoryAt(position);
 
+    if (story.getBy() != null) {
+      view.setInitial(story.getBy().substring(0, 1).toUpperCase());
+    }
+
     view.setBy(story.getBy());
+
+    view.setElapsedTime(DateTimeUtils.getElapsedTime(story.getTime()));
 
     if (!TextUtils.isEmpty(story.getTitle())) {
       view.setTitle(story.getTitle());
@@ -94,6 +101,10 @@ public class StoriesViewHolderPresenter implements BasePresenter {
 
   public interface View extends BasePresenter.View {
     void setBy(String by);
+
+    void setInitial(String initial);
+
+    void setElapsedTime(String elapsedTime);
 
     void setTitle(String title);
 

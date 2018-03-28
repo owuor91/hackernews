@@ -1,4 +1,9 @@
 <resources>
   <string name="app_name">Presentation</string>
   <string name="ellipsis">...</string>
+  <string name="weeks">w</string>
+  <string name="days">d</string>
+  <string name="hours">h</string>
+  <string name="minutes">m</string>
+  <string name="seconds">s</string>
 </resources>

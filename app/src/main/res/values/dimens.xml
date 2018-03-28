@@ -9,4 +9,7 @@
   <dimen name="tinyMargin">4dp</dimen>
   <dimen name="tinyText">8sp</dimen>
   <dimen name="pointsMargin">24dp</dimen>
+  <dimen name="dateSpace">5dp</dimen>
+  <dimen name="avatarPlaceholderTextSize">32sp</dimen>
+  <dimen name="listAvatarSize">56dp</dimen>
 </resources>

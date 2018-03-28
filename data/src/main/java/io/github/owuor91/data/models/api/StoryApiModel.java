@@ -20,7 +20,7 @@ public class StoryApiModel {
 
   @SerializedName("text") private String text;
 
-  @SerializedName("time") private int time;
+  @SerializedName("time") private long time;
 
   @SerializedName("title") private String title;
 
@@ -99,11 +99,11 @@ public class StoryApiModel {
     this.text = text;
   }
 
-  public int getTime() {
+  public long getTime() {
     return time;
   }
 
-  public void setTime(int time) {
+  public void setTime(long time) {
     this.time = time;
   }
 
@@ -146,7 +146,7 @@ public class StoryApiModel {
     private List<Integer> kids;
     private int score;
     private String text;
-    private int time;
+    private long time;
     private String title;
     private String type;
     private String url;
@@ -185,7 +185,7 @@ public class StoryApiModel {
       return this;
     }
 
-    public Builder withTime(int val) {
+    public Builder withTime(long val) {
       time = val;
       return this;
     }

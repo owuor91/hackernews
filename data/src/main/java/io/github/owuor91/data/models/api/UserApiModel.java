@@ -10,7 +10,7 @@ import java.util.List;
 public class UserApiModel {
   private String about;
 
-  private int created;
+  private long created;
 
   private int delay;
 
@@ -44,11 +44,11 @@ public class UserApiModel {
     this.about = about;
   }
 
-  public int getCreated() {
+  public long getCreated() {
     return created;
   }
 
-  public void setCreated(int created) {
+  public void setCreated(long created) {
     this.created = created;
   }
 
@@ -86,7 +86,7 @@ public class UserApiModel {
 
   public static final class Builder {
     private String about;
-    private int created;
+    private long created;
     private int delay;
     private String userId;
     private int karma;
@@ -100,7 +100,7 @@ public class UserApiModel {
       return this;
     }
 
-    public Builder withCreated(int val) {
+    public Builder withCreated(long val) {
       created = val;
       return this;
     }

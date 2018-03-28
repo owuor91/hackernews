@@ -12,8 +12,8 @@ import io.github.owuor91.domain.models.User;
 import io.github.owuor91.hackernews.R;
 import io.github.owuor91.hackernews.ui.viewutils.TextLinkUtil;
 import io.github.owuor91.presentation.user.UserPresenter;
-import java.util.Date;
 import javax.inject.Inject;
+import org.joda.time.DateTime;
 
 public class UserActivity extends BaseActivity implements UserPresenter.View {
   @BindView(R.id.userActivityToolbar) Toolbar toolbar;
@@ -60,8 +60,12 @@ public class UserActivity extends BaseActivity implements UserPresenter.View {
     if (!TextUtils.isEmpty(user.getAbout())) {
       TextLinkUtil.setText(user.getAbout(), tvAbout, getBaseContext());
     }
-    Date createdDate = new Date((long) user.getCreated() * 1000);
-    tvCreated.setText(String.valueOf(createdDate));
+
+    DateTime joinedDate = new DateTime(user.getCreated() * 1000);
+    String month = joinedDate.toString("MMMM");
+    String year = joinedDate.toString("yyyy");
+
+    tvCreated.setText(String.format("%s %s", month, year));
     tvKarma.setText(String.valueOf(user.getKarma()));
     tvSubmitted.setText(String.format("%s %s %s", getString(R.string.submitted), user.getSubmitted().size(),
         getString(R.string.items)));

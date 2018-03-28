@@ -16,6 +16,15 @@ public class Constants {
   public static final String COMMENTS = "comments";
   public static final String STORY_ID = "STORY_ID";
   public static final String USER_ID = "USER_ID";
+  public static final String WEEKS = "w";
+  public static final String DAYS = "d";
+  public static final String HOURS = "h";
+  public static final String MINUTES = "m";
+  public static final String SECONDS = "s";
+  public static final String SPACE = " ";
+  public static final int MILLISECONDS_1000 = 1000;
+  public static final String MONTHS = "M";
+  public static final String YEARS = "y";
   public static String COMMA = ",";
   public static String EMPTY_STRING = "";
 }

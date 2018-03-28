@@ -9,7 +9,7 @@ import java.util.List;
 public class User {
   private String about;
 
-  private int created;
+  private long created;
 
   private int delay;
 
@@ -43,11 +43,11 @@ public class User {
     this.about = about;
   }
 
-  public int getCreated() {
+  public long getCreated() {
     return created;
   }
 
-  public void setCreated(int created) {
+  public void setCreated(long created) {
     this.created = created;
   }
 
@@ -85,7 +85,7 @@ public class User {
 
   public static final class Builder {
     private String about;
-    private int created;
+    private long created;
     private int delay;
     private String userId;
     private int karma;
@@ -99,7 +99,7 @@ public class User {
       return this;
     }
 
-    public Builder withCreated(int val) {
+    public Builder withCreated(long val) {
       created = val;
       return this;
     }

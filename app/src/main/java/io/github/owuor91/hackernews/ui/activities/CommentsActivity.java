@@ -13,6 +13,7 @@ import android.widget.TextView;
 import butterknife.BindView;
 import io.github.owuor91.domain.Constants;
 import io.github.owuor91.domain.models.Story;
+import io.github.owuor91.domain.utils.DateTimeUtils;
 import io.github.owuor91.hackernews.R;
 import io.github.owuor91.hackernews.ui.adapters.StoriesAdapter;
 import io.github.owuor91.hackernews.ui.viewutils.TextLinkUtil;
@@ -32,6 +33,7 @@ public class CommentsActivity extends BaseActivity implements CommentsPresenter.
   @BindView(R.id.commentsActivityTvText) TextView tvText;
   @BindView(R.id.commentsActivityTvUrl) TextView tvUrl;
   @BindView(R.id.commentsActivityRecyclerView) RecyclerView recyclerView;
+  @BindView(R.id.commentsActivityTvTime) TextView tvTime;
   @Inject CommentsPresenter commentsPresenter;
   private StoriesAdapter storiesAdapter;
   private int storyId;
@@ -72,6 +74,9 @@ public class CommentsActivity extends BaseActivity implements CommentsPresenter.
     if (!TextUtils.isEmpty(story.getText())) {
       TextLinkUtil.setText(story.getText(), tvText, getBaseContext());
     }
+
+    tvTime.setText(DateTimeUtils.getElapsedTime(story.getTime()));
+
     tvTitle.setText(story.getTitle());
 
     if (story.getUrl() != null && !TextUtils.isEmpty(story.getUrl())) {
