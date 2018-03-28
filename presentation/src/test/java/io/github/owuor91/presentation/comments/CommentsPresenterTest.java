@@ -2,48 +2,47 @@ package io.github.owuor91.presentation.comments;
 
 import io.github.owuor91.domain.models.Story;
 import io.github.owuor91.domain.repository.StoryRepository;
+import io.github.owuor91.presentation.TrampolineSchedulerRule;
 import io.reactivex.Single;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.NoSuchElementException;
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
+
+import static org.mockito.ArgumentMatchers.anyInt;
 
 /**
  * Created by johnowuor on 26/03/2018.
  */
 
 @RunWith(MockitoJUnitRunner.class) public class CommentsPresenterTest {
+  @Rule public TrampolineSchedulerRule trampolineSchedulerRule = new TrampolineSchedulerRule();
+
+  @Mock StoryRepository storyApiRepository;
+  @Mock CommentsPresenter.View view;
 
   @Test public void shouldDisplayStory() {
-    List<Integer> kidsList = new ArrayList<Integer>();
-    kidsList.add(57380);
-    kidsList.add(78473);
-    kidsList.add(74628);
+    Story apiStory = Story.newBuilder().build();
 
-    Story apiStory = Story.newBuilder()
-        .withBy("userX")
-        .withDescendants(23)
-        .withId(47229)
-        .withItemType("itemType")
-        .withKids(kidsList)
-        .withScore(91)
-        .withText("storyText")
-        .withTime(743862)
-        .withTitle("storyTitle")
-        .withUrl("https://story.url.de")
-        .withType("story")
-        .build();
-
-    StoryRepository storyApiRepository = Mockito.mock(StoryRepository.class);
-    CommentsPresenter.View view = Mockito.mock(CommentsPresenter.View.class);
-
-    Mockito.when(storyApiRepository.getStoryById(47229)).thenReturn(Single.just(apiStory));
+    Mockito.when(storyApiRepository.getStoryById(anyInt())).thenReturn(Single.just(apiStory));
     CommentsPresenter commentsPresenter = new CommentsPresenter(storyApiRepository);
     commentsPresenter.setView(view);
-    commentsPresenter.getStoryById(47229);
+    commentsPresenter.getStoryById(67);
 
     Mockito.verify(view).displayStory(apiStory);
+  }
+
+  @Test public void shouldFailWithInvalidStoryId() {
+    Mockito.when(storyApiRepository.getStoryById(anyInt())).thenReturn(Single.error(new NoSuchElementException()));
+    CommentsPresenter commentsPresenter = new CommentsPresenter(storyApiRepository);
+    commentsPresenter.setView(view);
+    commentsPresenter.getStoryById(0);
+
+    Throwable throwable = new Throwable();
+
+    Mockito.verify(view).handleError(new NoSuchElementException());
   }
 }

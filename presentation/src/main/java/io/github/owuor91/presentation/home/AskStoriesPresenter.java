@@ -70,7 +70,7 @@ public class AskStoriesPresenter implements BasePresenter {
     compositeDisposable.add(disposable);
   }
 
-  private Single<List<Story>> getApiAskStories() {
+  public Single<List<Story>> getApiAskStories() {
     return itemApiRepository.getAskItems()
         .flatMapPublisher(Flowable::fromIterable)
         .flatMapSingle(item -> storyApiRepository.getStory(item))
