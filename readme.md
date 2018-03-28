@@ -3,12 +3,13 @@
 This is an android app that allows users to read HackerNews articles. It consumes the hackernews v0 API. The application's architecture follows the Model-View-Presenter design pattern and is divided into 4 modules:
 
  - app - Contains the UI components of the app and the root of the dependency injection.
- - presentation - Contains presenter classes that obtain data from repositories, process and pass it to the views as well as handling and processing view events and logic.
+ - presentation - Contains presenter classes that obtain data from repositories, process and pass it to the views
+                  as well as handling and processing view events and logic.
  - data - Contains the implementation of the data sources (repositories) used in the app, both api and local db.
  - domain - Contains interfaces of the repositories and models used throughout the app.
 
 ### HackerNews is available on the Playstore
-(https://ibb.co/ckM5jn) (https://ibb.co/nfL9AS) (https://ibb.co/h0FbqS)
+![story](https://ibb.co/ckM5jn)    ![comment](https://ibb.co/nfL9AS)     ![user](https://ibb.co/h0FbqS)
 
 ### Pull the project
     git clone https://github.com/owuor91/hackernews.git
