@@ -9,7 +9,7 @@ This is an android app that allows users to read HackerNews articles. It consume
  - domain - Contains interfaces of the repositories and models used throughout the app.
 
 ### HackerNews is available on the Playstore
-![story](https://ibb.co/ckM5jn)    ![comment](https://ibb.co/nfL9AS)     ![user](https://ibb.co/h0FbqS)
+![story](https://raw.githubusercontent.com/owuor91/hackernews/master/images/story.png)    ![comment](https://raw.githubusercontent.com/owuor91/hackernews/master/images/comment.png)     ![user](https://raw.githubusercontent.com/owuor91/hackernews/master/images/user.png)
 
 ### Pull the project
     git clone https://github.com/owuor91/hackernews.git
