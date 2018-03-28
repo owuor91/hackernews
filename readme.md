@@ -9,7 +9,7 @@ This is an android app that allows users to read HackerNews articles. It consume
  - domain - Contains interfaces of the repositories and models used throughout the app.
 
 ### HackerNews is available on the Playstore
-<img src="https://raw.githubusercontent.com/owuor91/hackernews/master/images/story.png" width="300"> <img src="https://raw.githubusercontent.com/owuor91/hackernews/master/images/comment.png" width="300"> <img src="https://raw.githubusercontent.com/owuor91/hackernews/master/images/user.png" width="300">
+<img src="https://raw.githubusercontent.com/owuor91/hackernews/master/images/story.png" width="260"> <img src="https://raw.githubusercontent.com/owuor91/hackernews/master/images/comment.png" width="260"> <img src="https://raw.githubusercontent.com/owuor91/hackernews/master/images/user.png" width="260">
 
 ### Pull the project
     git clone https://github.com/owuor91/hackernews.git
@@ -21,6 +21,7 @@ This is an android app that allows users to read HackerNews articles. It consume
  - [RxJava](https://github.com/ReactiveX/RxJava) - Asynchronous event-based reactive streams
  - [RxAndroid](https://github.com/ReactiveX/RxAndroid) - Android bindings for RxJava
  - [Joda-Time](http://www.joda.org/joda-time/) - DateTime utilities
+ - [Crashlytics](https://fabric.io/kits/android/crashlytics) - Crash reporting
 
 ### View
  - [Butter Knife](http://jakewharton.github.io/butterknife/) - View binding
