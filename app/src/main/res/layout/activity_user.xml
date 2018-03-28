@@ -76,7 +76,7 @@
             android:layout_toRightOf="@id/userActivityImgDescription"
             android:text="@string/noDescriptionAvailable"
             android:textColor="@android:color/black"
-            android:textColorLink="@android:color/holo_blue_light"
+            android:textColorLink="@color/hackerNewsOrange"
             />
       </RelativeLayout>
 

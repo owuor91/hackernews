@@ -104,13 +104,13 @@
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:textColor="@android:color/black"
-              android:textColorLink="@android:color/holo_blue_light"
+              android:textColorLink="@color/hackerNewsOrange"
               />
           <TextView
               android:id="@+id/commentsActivityTvUrl"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:textColor="@android:color/holo_blue_light"
+              android:textColor="@color/hackerNewsOrange"
               android:textSize="@dimen/smallText"
               />
 

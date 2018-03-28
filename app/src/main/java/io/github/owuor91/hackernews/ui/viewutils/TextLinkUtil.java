@@ -10,6 +10,10 @@ import android.text.style.ClickableSpan;
 import android.text.style.URLSpan;
 import android.view.View;
 import android.widget.TextView;
+import io.github.owuor91.domain.Constants;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by johnowuor on 25/03/2018.
@@ -40,5 +44,30 @@ public class TextLinkUtil {
     };
     ssBuilder.setSpan(clickable, start, end, flags);
     ssBuilder.removeSpan(urlSpan);
+  }
+
+  public static List<String> getUrls(String text) {
+    List<String> stringList = Arrays.asList(text.split(" "));
+    List<String> urls = new ArrayList<String>();
+    for (String s : stringList) {
+      if (s.startsWith("http")) {
+        urls.add(s);
+      }
+    }
+    return urls;
+  }
+
+  public static String makeUrls(String text) {
+    List<String> urls = getUrls(text);
+    List<String> textArray = Arrays.asList(text.split(" "));
+    String finalText = Constants.EMPTY_STRING;
+    for (String s : textArray) {
+      if (urls.contains(s)) {
+        s = "<a href=\"" + s + "\">" + s + "</a>";
+      }
+      finalText += s;
+      finalText += Constants.SPACE;
+    }
+    return finalText;
   }
 }

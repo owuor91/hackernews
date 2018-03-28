@@ -58,7 +58,8 @@ public class UserActivity extends BaseActivity implements UserPresenter.View {
   @Override public void displayUser(User user) {
     tvToolbar.setText(user.getUserId());
     if (!TextUtils.isEmpty(user.getAbout())) {
-      TextLinkUtil.setText(user.getAbout(), tvAbout, getBaseContext());
+      String finalDescription = TextLinkUtil.makeUrls(user.getAbout());
+      TextLinkUtil.setText(finalDescription, tvAbout, getBaseContext());
     }
 
     DateTime joinedDate = new DateTime(user.getCreated() * 1000);
