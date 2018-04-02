@@ -10,7 +10,7 @@ This is an android app that allows users to read HackerNews articles. It consume
 
 ### HackerNews is available on the Playstore
 <img src="https://raw.githubusercontent.com/owuor91/hackernews/master/images/story.png" width="260"> <img src="https://raw.githubusercontent.com/owuor91/hackernews/master/images/comment.png" width="260"> <img src="https://raw.githubusercontent.com/owuor91/hackernews/master/images/user.png" width="260">
-<a href='https://play.google.com/store/apps/details?id=io.github.owuor91.hackernews&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png'/></a>
+<a href='https://play.google.com/store/apps/details?id=io.github.owuor91.hackernews&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1' target='_blank'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' width='300px'/></a>
 
 ### Pull the project
     git clone https://github.com/owuor91/hackernews.git
