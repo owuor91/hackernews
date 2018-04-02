@@ -1,7 +1,9 @@
 package io.github.owuor91.hackernews;
 
 import android.app.Application;
+import com.crashlytics.android.Crashlytics;
 import com.facebook.stetho.Stetho;
+import io.fabric.sdk.android.Fabric;
 import io.github.owuor91.domain.Constants;
 import io.github.owuor91.hackernews.di.activity.ActivityComponent;
 import io.github.owuor91.hackernews.di.activity.ActivityModule;
@@ -32,6 +34,8 @@ public class MyApplication extends Application {
     CalligraphyConfig.initDefault(new CalligraphyConfig.Builder().setDefaultFontPath(Constants.CUSTOM_FONT_ASSET_PATH)
         .setFontAttrId(R.attr.fontPath)
         .build());
+
+    Fabric.with(this, new Crashlytics());
   }
 
   public ActivityComponent getActivityInjector(BaseActivity baseActivity) {

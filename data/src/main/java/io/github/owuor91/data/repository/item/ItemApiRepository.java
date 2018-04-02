@@ -66,4 +66,8 @@ public class ItemApiRepository implements ItemRepository {
   @Override public Single<Object> deleteItems(List<Item> itemList) {
     return Single.error(new OperationImpossibleException());
   }
+
+  @Override public Single<Object> deleteAllItems() {
+    return Single.error(new OperationImpossibleException());
+  }
 }

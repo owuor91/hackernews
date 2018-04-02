@@ -19,4 +19,6 @@ import java.util.List;
   @Insert(onConflict = OnConflictStrategy.REPLACE) long[] insertItems(List<ItemDbModel> itemDbModels);
 
   @Delete int deleteItems(List<ItemDbModel> itemDbModels);
+
+  @Query("SELECT * FROM items") Single<List<ItemDbModel>> getAllItems();
 }

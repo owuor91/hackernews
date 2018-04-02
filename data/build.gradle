@@ -55,6 +55,10 @@ dependencies {
 
   testCompile "org.mockito:mockito-core:2.+"
 
+  compile('com.crashlytics.sdk.android:crashlytics:2.9.1@aar') {
+    transitive = true;
+  }
+
 
   api project(':domain')
 }

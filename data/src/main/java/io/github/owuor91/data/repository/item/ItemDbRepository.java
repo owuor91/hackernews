@@ -65,4 +65,8 @@ public class ItemDbRepository implements ItemRepository {
         .toList()
         .map(itemDao::deleteItems);
   }
+
+  @Override public Single<Object> deleteAllItems() {
+    return itemDao.getAllItems().map(itemDao::deleteItems);
+  }
 }

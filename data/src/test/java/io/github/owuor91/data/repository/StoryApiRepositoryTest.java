@@ -9,6 +9,7 @@ import io.github.owuor91.domain.models.Story;
 import io.github.owuor91.domain.repository.StoryRepository;
 import io.reactivex.Flowable;
 import io.reactivex.observers.TestObserver;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -23,17 +24,22 @@ import org.mockito.junit.MockitoJUnitRunner;
 
   @Mock StoriesApi storiesApi;
   @Mock StoryRepository storyDbRepository;
+  private StoryApiModel storyApiModel;
 
-  @Test public void shouldGetStoryById() {
-    StoryApiModel storyApiModel = StoryApiModel.newBuilder().withBy("dearieblossom")
-        .withDescendants(84).withId(24811)
+  @Before public void setup() {
+    storyApiModel = StoryApiModel.newBuilder()
+        .withBy("dearieblossom")
+        .withDescendants(84)
+        .withId(24811)
         .withScore(43)
         .withTime(7548393)
-        .withTitle("divine sorrow")
+        .withTitle("divine")
         .withType("Story")
         .withUrl("https://stories.de.url")
         .build();
+  }
 
+  @Test public void shouldGetStoryById() {
     Mockito.when(storiesApi.getStory(24811)).thenReturn(Flowable.just(storyApiModel));
 
     StoryApiRepository storyApiRepository = new StoryApiRepository(storiesApi, storyDbRepository);
@@ -44,17 +50,6 @@ import org.mockito.junit.MockitoJUnitRunner;
   }
 
   @Test public void shouldGetStoryByItem() {
-    StoryApiModel storyApiModel = StoryApiModel.newBuilder()
-        .withBy("dearieblossom")
-        .withDescendants(84)
-        .withId(24811)
-        .withScore(43)
-        .withTime(7548393)
-        .withTitle("divine sorrow")
-        .withType("Story")
-        .withUrl("https://stories.de.url")
-        .build();
-
     Item item = Item.newBuilder().withId(9).withItem(24811).withItemType(Constants.JOB_STORY).build();
 
     Mockito.when(storiesApi.getStory(item.getItem())).thenReturn(Flowable.just(storyApiModel));
