@@ -1,6 +1,7 @@
 package io.github.owuor91.hackernews.ui.activities;
 
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
@@ -9,6 +10,7 @@ import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import butterknife.BindView;
+import io.github.owuor91.domain.Constants;
 import io.github.owuor91.hackernews.R;
 import io.github.owuor91.hackernews.ui.fragments.AskStoriesFragment;
 import io.github.owuor91.hackernews.ui.fragments.JobStoriesFragment;
@@ -39,8 +41,6 @@ public class HomeActivity extends BaseActivity implements HomePresenter.View {
 
     setSupportActionBar(toolbar);
     getSupportActionBar().setDisplayShowTitleEnabled(false);
-    setToolbarTitleText(getString(R.string.topStories));
-
     getSupportFragmentManager().beginTransaction()
         .replace(R.id.homeActivityFramelayout, new TopStoriesFragment())
         .addToBackStack(null)
@@ -51,9 +51,6 @@ public class HomeActivity extends BaseActivity implements HomePresenter.View {
 
   @Override protected void onResume() {
     super.onResume();
-
-    bottomNavigationView.setSelectedItemId(R.id.topStories);
-    openSelectedTab(new TopStoriesFragment(), getString(R.string.topStories));
 
     bottomNavigationView.setOnNavigationItemSelectedListener(menuItem -> {
       switch (menuItem.getItemId()) {
@@ -110,5 +107,18 @@ public class HomeActivity extends BaseActivity implements HomePresenter.View {
   @Override protected void dispose() {
     super.dispose();
     homePresenter.dispose();
+  }
+
+  @Override public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
+    super.onSaveInstanceState(outState, outPersistentState);
+    outState.putString(Constants.TOOLBAR_TITLE_TEXT, tvToolbar.getText().toString());
+  }
+
+  @Override protected void onRestoreInstanceState(Bundle savedInstanceState) {
+    super.onRestoreInstanceState(savedInstanceState);
+    String previousToolbarTitle = savedInstanceState.getString(Constants.TOOLBAR_TITLE_TEXT);
+    if (savedInstanceState != null && previousToolbarTitle != null) {
+      setToolbarTitleText(previousToolbarTitle);
+    }
   }
 }
