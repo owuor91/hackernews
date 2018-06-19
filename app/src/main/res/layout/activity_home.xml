@@ -33,6 +33,7 @@
             android:layout_height="wrap_content"
             android:textColor="@android:color/white"
             android:textSize="@dimen/toolbarTitleTextSize"
+            android:text="Top Stories"
             />
       </android.support.v7.widget.Toolbar>
 
