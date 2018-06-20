@@ -1,7 +1,6 @@
 package io.github.owuor91.hackernews.ui.activities;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
@@ -27,6 +26,7 @@ public class HomeActivity extends BaseActivity implements HomePresenter.View {
   @BindView(R.id.homeActivityFramelayout) FrameLayout frameLayout;
   @BindView(R.id.homeActivityBottomNavView) BottomNavigationView bottomNavigationView;
   @BindView(R.id.homeActivityTvToolbar) TextView tvToolbar;
+  String lastToolbarTitle;
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -52,6 +52,8 @@ public class HomeActivity extends BaseActivity implements HomePresenter.View {
   @Override protected void onResume() {
     super.onResume();
 
+    resumeFragmentTab();
+
     bottomNavigationView.setOnNavigationItemSelectedListener(menuItem -> {
       switch (menuItem.getItemId()) {
         case R.id.topStories:
@@ -68,6 +70,30 @@ public class HomeActivity extends BaseActivity implements HomePresenter.View {
       }
       return true;
     });
+  }
+
+  @Override protected void onPause() {
+    super.onPause();
+    lastToolbarTitle = tvToolbar.getText().toString();
+  }
+
+  private void resumeFragmentTab() {
+    if (lastToolbarTitle != null) {
+      switch (lastToolbarTitle) {
+        case Constants.TOP_STORIES:
+          openSelectedTab(new TopStoriesFragment(), lastToolbarTitle);
+          break;
+        case Constants.SHOW_STORIES:
+          openSelectedTab(new ShowStoriesFragment(), lastToolbarTitle);
+          break;
+        case Constants.JOB_STORIES:
+          openSelectedTab(new JobStoriesFragment(), lastToolbarTitle);
+          break;
+        case Constants.ASK_STORIES:
+          openSelectedTab(new AskStoriesFragment(), lastToolbarTitle);
+          break;
+      }
+    }
   }
 
   private void openSelectedTab(Fragment fragment, String toolbarTitleText) {
@@ -107,18 +133,5 @@ public class HomeActivity extends BaseActivity implements HomePresenter.View {
   @Override protected void dispose() {
     super.dispose();
     homePresenter.dispose();
-  }
-
-  @Override public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
-    super.onSaveInstanceState(outState, outPersistentState);
-    outState.putString(Constants.TOOLBAR_TITLE_TEXT, tvToolbar.getText().toString());
-  }
-
-  @Override protected void onRestoreInstanceState(Bundle savedInstanceState) {
-    super.onRestoreInstanceState(savedInstanceState);
-    String previousToolbarTitle = savedInstanceState.getString(Constants.TOOLBAR_TITLE_TEXT);
-    if (savedInstanceState != null && previousToolbarTitle != null) {
-      setToolbarTitleText(previousToolbarTitle);
-    }
   }
 }

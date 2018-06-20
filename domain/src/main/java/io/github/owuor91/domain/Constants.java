@@ -25,6 +25,10 @@ public class Constants {
   public static final int MILLISECONDS_1000 = 1000;
   public static final String MONTHS = "M";
   public static final String YEARS = "y";
+  public static final String TOP_STORIES = "Top Stories";
+  public static final String SHOW_STORIES = "Show Stories";
+  public static final String JOB_STORIES = "Job Stories";
+  public static final String ASK_STORIES = "Ask Stories";
   public static String COMMA = ",";
   public static String EMPTY_STRING = "";
 }
