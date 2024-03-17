@@ -1,8 +1,8 @@
 package io.github.owuor91.hackernews.di.activity;
 
 import android.content.Context;
-import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
+import androidx.fragment.app.FragmentManager;
 import dagger.Module;
 import dagger.Provides;
 import io.github.owuor91.domain.di.DIConstants;

@@ -18,6 +18,7 @@ import io.github.owuor91.hackernews.ui.viewutils.TextLinkUtil;
 import io.github.owuor91.presentation.home.StoriesViewHolderPresenter;
 import javax.inject.Inject;
 import javax.inject.Named;
+import io.github.owuor91.hackernews.R;
 
 /**
  * Created by johnowuor on 22/03/2018.

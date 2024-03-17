@@ -1,6 +1,6 @@
 package io.github.owuor91.hackernews.ui.adapters;
 
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 import io.github.owuor91.hackernews.di.activity.ActivityComponent;
 import io.github.owuor91.hackernews.di.adapter.AdapterComponent;
 

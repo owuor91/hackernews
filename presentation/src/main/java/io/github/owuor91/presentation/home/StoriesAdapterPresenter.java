@@ -10,7 +10,7 @@ import javax.inject.Inject;
  * Created by johnowuor on 22/03/2018.
  */
 
-public class StoriesAdapterPresenter implements BasePresenter {
+public class  StoriesAdapterPresenter implements BasePresenter {
   private List<Story> stories;
   private View view;
   private JobStoriesPresenter jobStoriesPresenter;

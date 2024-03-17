@@ -1,14 +1,14 @@
 package io.github.owuor91.hackernews.ui.activities;
 
 import android.os.Bundle;
-import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.Toolbar;
+import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import androidx.fragment.app.Fragment;
 import butterknife.BindView;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import io.github.owuor91.domain.Constants;
 import io.github.owuor91.hackernews.R;
 import io.github.owuor91.hackernews.ui.fragments.AskStoriesFragment;

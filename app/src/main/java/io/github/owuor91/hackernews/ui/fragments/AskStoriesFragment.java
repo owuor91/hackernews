@@ -1,11 +1,11 @@
 package io.github.owuor91.hackernews.ui.fragments;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.Nullable;
 import android.view.View;
 import android.widget.ProgressBar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import io.github.owuor91.domain.models.Story;
 import io.github.owuor91.hackernews.R;

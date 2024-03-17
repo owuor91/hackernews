@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import dagger.Module;
 import dagger.Provides;
-import io.github.owuor91.data.BuildConfig;
 import io.github.owuor91.data.api.ItemsApi;
 import io.github.owuor91.data.api.StoriesApi;
 import io.github.owuor91.data.api.UserApi;
@@ -31,7 +30,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
   @Provides @Named(DIConstants.DEFAULT)
   public Retrofit provideDefaultRetrofit(Gson gson, @Named(DIConstants.DEFAULT) OkHttpClient okHttpClient) {
-    return new Retrofit.Builder().baseUrl(BuildConfig.BASE_URL)
+    return new Retrofit.Builder().baseUrl("https://hacker-news.firebaseio.com/v0/")
         .addConverterFactory(GsonConverterFactory.create(gson))
         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
         .client(okHttpClient)

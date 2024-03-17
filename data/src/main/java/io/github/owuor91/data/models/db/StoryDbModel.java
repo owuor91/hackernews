@@ -1,7 +1,7 @@
 package io.github.owuor91.data.models.db;
 
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.PrimaryKey;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
 /**
  * Created by johnowuor on 22/03/2018.

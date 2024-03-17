@@ -71,7 +71,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@android:color/black"
-        fontPath="fonts/GothamRoundedBold.ttf"
+        android:fontFamily="@font/gothamroundedbold"
         />
     <TextView
         android:id="@+id/storyListItemTvText"
