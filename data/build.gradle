@@ -2,13 +2,11 @@ apply plugin: 'com.android.library'
 
 android {
   namespace = "io.github.owuor91.data"
-  compileSdkVersion 34
+  compileSdkVersion 36
 
   defaultConfig {
     minSdkVersion 23
-    targetSdkVersion 34
-    versionCode 4
-    versionName "1.0.1"
+    targetSdkVersion 36
 
     testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
   }
